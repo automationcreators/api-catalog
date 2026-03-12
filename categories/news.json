@@ -169,6 +169,276 @@
           "example": "curl 'https://api.currentsapi.services/v1/available/categories'"
         }
       ]
+    },
+    {
+      "name": "Spaceflight News API",
+      "base_url": "https://api.spaceflightnewsapi.net/v4",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generous rate limits",
+      "key_env_var": null,
+      "docs_url": "https://api.spaceflightnewsapi.net/v4/docs/",
+      "endpoints": [
+        {
+          "path": "/articles/?limit=10&ordering=-published_at",
+          "method": "GET",
+          "desc": "Latest spaceflight news articles sorted by publication date",
+          "example": "curl 'https://api.spaceflightnewsapi.net/v4/articles/?limit=10&ordering=-published_at'"
+        },
+        {
+          "path": "/articles/?search={query}&limit=10",
+          "method": "GET",
+          "desc": "Search spaceflight articles by keyword",
+          "example": "curl 'https://api.spaceflightnewsapi.net/v4/articles/?search=SpaceX&limit=10'"
+        },
+        {
+          "path": "/blogs/?limit=10",
+          "method": "GET",
+          "desc": "Latest space-related blog posts from various sources",
+          "example": "curl 'https://api.spaceflightnewsapi.net/v4/blogs/?limit=10'"
+        }
+      ]
+    },
+    {
+      "name": "Wikipedia Current Events",
+      "base_url": "https://en.wikipedia.org/api/rest_v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, must include User-Agent header",
+      "key_env_var": null,
+      "docs_url": "https://en.wikipedia.org/api/rest_v1/",
+      "endpoints": [
+        {
+          "path": "/feed/featured/{yyyy}/{mm}/{dd}",
+          "method": "GET",
+          "desc": "Featured content for a specific date including news, articles, and events",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://en.wikipedia.org/api/rest_v1/feed/featured/2026/03/12'"
+        },
+        {
+          "path": "/page/summary/Portal:Current_events",
+          "method": "GET",
+          "desc": "Summary of the current events portal page",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://en.wikipedia.org/api/rest_v1/page/summary/Portal:Current_events'"
+        },
+        {
+          "path": "/feed/onthisday/events/{mm}/{dd}",
+          "method": "GET",
+          "desc": "Historical events that happened on this day",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/03/12'"
+        }
+      ]
+    },
+    {
+      "name": "Event Registry",
+      "base_url": "https://eventregistry.org/api/v1",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "Free tier with 500 tokens/day, access to 2,000+ news sources",
+      "key_env_var": "EVENT_REGISTRY_API_KEY",
+      "docs_url": "https://eventregistry.org/documentation",
+      "endpoints": [
+        {
+          "path": "/article/getArticles?apiKey={key}&keyword={query}&lang=eng&articlesCount=10",
+          "method": "GET",
+          "desc": "Search for articles by keyword across global news sources",
+          "example": "curl 'https://eventregistry.org/api/v1/article/getArticles?apiKey=$EVENT_REGISTRY_API_KEY&keyword=artificial+intelligence&lang=eng&articlesCount=10'"
+        },
+        {
+          "path": "/event/getEvents?apiKey={key}&keyword={query}&lang=eng&eventsCount=10",
+          "method": "GET",
+          "desc": "Get clustered news events by keyword",
+          "example": "curl 'https://eventregistry.org/api/v1/event/getEvents?apiKey=$EVENT_REGISTRY_API_KEY&keyword=climate+change&lang=eng&eventsCount=10'"
+        }
+      ]
+    },
+    {
+      "name": "Newscatcher",
+      "base_url": "https://api.newscatcherapi.com/v2",
+      "auth": "apiKey",
+      "auth_param": "x-api-key",
+      "auth_location": "header",
+      "free_tier": "Free tier with 50 calls/day, 1 call/second",
+      "key_env_var": "NEWSCATCHER_API_KEY",
+      "docs_url": "https://docs.newscatcherapi.com/",
+      "endpoints": [
+        {
+          "path": "/search?q={query}&lang=en&sort_by=date&page_size=10",
+          "method": "GET",
+          "desc": "Search news articles by keyword with date sorting",
+          "example": "curl -H 'x-api-key: $NEWSCATCHER_API_KEY' 'https://api.newscatcherapi.com/v2/search?q=startup+funding&lang=en&sort_by=date&page_size=10'"
+        },
+        {
+          "path": "/latest_headlines?lang=en&topic={topic}&page_size=10",
+          "method": "GET",
+          "desc": "Latest headlines filtered by topic (tech, business, science, etc.)",
+          "example": "curl -H 'x-api-key: $NEWSCATCHER_API_KEY' 'https://api.newscatcherapi.com/v2/latest_headlines?lang=en&topic=tech&page_size=10'"
+        },
+        {
+          "path": "/sources?lang=en&topic={topic}",
+          "method": "GET",
+          "desc": "List available news sources by language and topic",
+          "example": "curl -H 'x-api-key: $NEWSCATCHER_API_KEY' 'https://api.newscatcherapi.com/v2/sources?lang=en&topic=tech'"
+        }
+      ]
+    },
+    {
+      "name": "GDELT Project",
+      "base_url": "https://api.gdeltproject.org/api/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, monitors news from 100+ languages in real time",
+      "key_env_var": null,
+      "docs_url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-documentation/",
+      "endpoints": [
+        {
+          "path": "/doc/doc?query={query}&mode=artlist&maxrecords=25&format=json",
+          "method": "GET",
+          "desc": "Search global news articles by keyword with article list mode",
+          "example": "curl 'https://api.gdeltproject.org/api/v2/doc/doc?query=artificial+intelligence&mode=artlist&maxrecords=25&format=json'"
+        },
+        {
+          "path": "/doc/doc?query={query}&mode=timelinevol&format=json",
+          "method": "GET",
+          "desc": "Volume timeline showing news coverage intensity over time",
+          "example": "curl 'https://api.gdeltproject.org/api/v2/doc/doc?query=climate+change&mode=timelinevol&format=json'"
+        },
+        {
+          "path": "/doc/doc?query={query}&mode=tonechart&format=json",
+          "method": "GET",
+          "desc": "Sentiment/tone analysis of news coverage for a topic",
+          "example": "curl 'https://api.gdeltproject.org/api/v2/doc/doc?query=cryptocurrency&mode=tonechart&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "Mediastack",
+      "base_url": "http://api.mediastack.com/v1",
+      "auth": "apiKey",
+      "auth_param": "access_key",
+      "auth_location": "query",
+      "free_tier": "500 requests/month, HTTP only on free tier",
+      "key_env_var": "MEDIASTACK_API_KEY",
+      "docs_url": "https://mediastack.com/documentation",
+      "endpoints": [
+        {
+          "path": "/news?access_key={key}&languages=en&limit=10",
+          "method": "GET",
+          "desc": "Live news headlines with language filter",
+          "example": "curl 'http://api.mediastack.com/v1/news?access_key=$MEDIASTACK_API_KEY&languages=en&limit=10'"
+        },
+        {
+          "path": "/news?access_key={key}&keywords={query}&languages=en&sort=published_desc",
+          "method": "GET",
+          "desc": "Search news by keyword sorted by publication date",
+          "example": "curl 'http://api.mediastack.com/v1/news?access_key=$MEDIASTACK_API_KEY&keywords=electric+vehicles&languages=en&sort=published_desc'"
+        },
+        {
+          "path": "/news?access_key={key}&categories={category}&countries=us",
+          "method": "GET",
+          "desc": "Filter news by category (business, technology, science) and country",
+          "example": "curl 'http://api.mediastack.com/v1/news?access_key=$MEDIASTACK_API_KEY&categories=technology&countries=us'"
+        }
+      ]
+    },
+    {
+      "name": "Thenewsapi.com",
+      "base_url": "https://api.thenewsapi.com/v1",
+      "auth": "apiKey",
+      "auth_param": "api_token",
+      "auth_location": "query",
+      "free_tier": "3 requests/day, 3 articles per response on free plan",
+      "key_env_var": "THENEWSAPI_COM_KEY",
+      "docs_url": "https://www.thenewsapi.com/documentation",
+      "endpoints": [
+        {
+          "path": "/news/similar/{uuid}?api_token={key}",
+          "method": "GET",
+          "desc": "Find articles similar to a given article UUID",
+          "example": "curl 'https://api.thenewsapi.com/v1/news/similar/abc123?api_token=$THENEWSAPI_COM_KEY'"
+        },
+        {
+          "path": "/news/top?api_token={key}&categories=tech,business&language=en",
+          "method": "GET",
+          "desc": "Top stories filtered by category and language",
+          "example": "curl 'https://api.thenewsapi.com/v1/news/top?api_token=$THENEWSAPI_COM_KEY&categories=tech,business&language=en'"
+        }
+      ]
+    },
+    {
+      "name": "Associated Press API",
+      "base_url": "https://api.ap.org/v2",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "query",
+      "free_tier": "Free tier with limited access to AP content feed",
+      "key_env_var": "AP_API_KEY",
+      "docs_url": "https://developer.ap.org/ap-content-api",
+      "endpoints": [
+        {
+          "path": "/content?q={query}&apikey={key}&page_size=10",
+          "method": "GET",
+          "desc": "Search AP news content by keyword",
+          "example": "curl 'https://api.ap.org/v2/content?q=election&apikey=$AP_API_KEY&page_size=10'"
+        },
+        {
+          "path": "/content/{item_id}?apikey={key}",
+          "method": "GET",
+          "desc": "Retrieve a specific AP content item by ID",
+          "example": "curl 'https://api.ap.org/v2/content/abc123?apikey=$AP_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "NPR API",
+      "base_url": "https://api.npr.org",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "Free tier with rate limits, access to NPR stories and programs",
+      "key_env_var": "NPR_API_KEY",
+      "docs_url": "https://dev.npr.org/api/",
+      "endpoints": [
+        {
+          "path": "/query?apiKey={key}&searchTerm={query}&output=JSON&numResults=10",
+          "method": "GET",
+          "desc": "Search NPR stories by keyword",
+          "example": "curl 'https://api.npr.org/query?apiKey=$NPR_API_KEY&searchTerm=technology&output=JSON&numResults=10'"
+        },
+        {
+          "path": "/query?apiKey={key}&id={topic_id}&output=JSON&numResults=10",
+          "method": "GET",
+          "desc": "Get stories by NPR topic ID (1007=science, 1019=technology)",
+          "example": "curl 'https://api.npr.org/query?apiKey=$NPR_API_KEY&id=1019&output=JSON&numResults=10'"
+        }
+      ]
+    },
+    {
+      "name": "RSS2JSON",
+      "base_url": "https://api.rss2json.com/v1",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free tier with 10,000 requests/day, converts any RSS feed to JSON",
+      "key_env_var": "RSS2JSON_API_KEY",
+      "docs_url": "https://rss2json.com/docs",
+      "endpoints": [
+        {
+          "path": "/api.json?rss_url={feed_url}",
+          "method": "GET",
+          "desc": "Convert any RSS feed URL to JSON format",
+          "example": "curl 'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/technology/rss.xml'"
+        },
+        {
+          "path": "/api.json?rss_url={feed_url}&api_key={key}&count=20&order_by=pubDate",
+          "method": "GET",
+          "desc": "Convert RSS to JSON with pagination and sorting (requires API key)",
+          "example": "curl 'https://api.rss2json.com/v1/api.json?rss_url=https://hnrss.org/frontpage&api_key=$RSS2JSON_API_KEY&count=20&order_by=pubDate'"
+        }
+      ]
     }
   ]
 }

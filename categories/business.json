@@ -163,6 +163,306 @@
           "example": "curl 'https://api.zerobounce.net/v2/guessformat?api_key=$ZEROBOUNCE_API_KEY&domain=google.com'"
         }
       ]
+    },
+    {
+      "name": "Apollo.io",
+      "base_url": "https://api.apollo.io/v1",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "body",
+      "free_tier": "100 credits/month on free plan",
+      "key_env_var": "APOLLO_API_KEY",
+      "docs_url": "https://apolloio.github.io/apollo-api-docs/",
+      "endpoints": [
+        {
+          "path": "/people/match",
+          "method": "POST",
+          "desc": "Enrich a person record by email, name, or LinkedIn URL",
+          "example": "curl -X POST 'https://api.apollo.io/v1/people/match' -H 'Content-Type: application/json' -d '{\"api_key\":\"$APOLLO_API_KEY\",\"email\":\"test@example.com\"}'"
+        },
+        {
+          "path": "/organizations/enrich",
+          "method": "GET",
+          "desc": "Enrich a company by domain to get firmographic data",
+          "example": "curl 'https://api.apollo.io/v1/organizations/enrich?api_key=$APOLLO_API_KEY&domain=stripe.com'"
+        },
+        {
+          "path": "/mixed_people/search",
+          "method": "POST",
+          "desc": "Search people by title, company, location, and other filters",
+          "example": "curl -X POST 'https://api.apollo.io/v1/mixed_people/search' -H 'Content-Type: application/json' -d '{\"api_key\":\"$APOLLO_API_KEY\",\"person_titles\":[\"CTO\"],\"organization_domains\":[\"stripe.com\"]}'"
+        }
+      ]
+    },
+    {
+      "name": "Crunchbase",
+      "base_url": "https://api.crunchbase.com/api/v4",
+      "auth": "apiKey",
+      "auth_param": "user_key",
+      "auth_location": "query",
+      "free_tier": "Free basic endpoints for company search and profiles",
+      "key_env_var": "CRUNCHBASE_API_KEY",
+      "docs_url": "https://data.crunchbase.com/docs",
+      "endpoints": [
+        {
+          "path": "/autocompletes?query={query}&user_key={key}",
+          "method": "GET",
+          "desc": "Autocomplete search for organizations, people, and categories",
+          "example": "curl 'https://api.crunchbase.com/api/v4/autocompletes?query=openai&user_key=$CRUNCHBASE_API_KEY'"
+        },
+        {
+          "path": "/entities/organizations/{permalink}?user_key={key}",
+          "method": "GET",
+          "desc": "Get full organization profile including funding and team",
+          "example": "curl 'https://api.crunchbase.com/api/v4/entities/organizations/openai?user_key=$CRUNCHBASE_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Glassdoor (Unofficial)",
+      "base_url": "https://www.glassdoor.com/api",
+      "auth": "apiKey",
+      "auth_param": "t.p",
+      "auth_location": "query",
+      "free_tier": "Unofficial endpoints, no official free tier. Scraping with rate limits",
+      "key_env_var": null,
+      "docs_url": "https://www.glassdoor.com/developer/index.htm",
+      "endpoints": [
+        {
+          "path": "/api.htm?t.p={partner_id}&t.k={key}&action=employers&q={company}",
+          "method": "GET",
+          "desc": "Search employers by name to get ratings and review counts",
+          "example": "curl 'https://www.glassdoor.com/api/api.htm?t.p=PARTNER_ID&t.k=PARTNER_KEY&action=employers&q=Google&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "SEC EDGAR Company Search",
+      "base_url": "https://efts.sec.gov/LATEST",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, must include User-Agent header with contact email. 10 requests/second",
+      "key_env_var": null,
+      "docs_url": "https://efts.sec.gov/LATEST/search-index?q=&dateRange=custom",
+      "endpoints": [
+        {
+          "path": "/search-index?q={query}&dateRange=custom&startdt={start}&enddt={end}",
+          "method": "GET",
+          "desc": "Full-text search across SEC filings (10-K, 10-Q, 8-K, etc.)",
+          "example": "curl -H 'User-Agent: MyApp/1.0 (contact@example.com)' 'https://efts.sec.gov/LATEST/search-index?q=artificial+intelligence&dateRange=custom&startdt=2024-01-01&enddt=2024-12-31'"
+        },
+        {
+          "path": "https://data.sec.gov/submissions/CIK{cik_number}.json",
+          "method": "GET",
+          "desc": "Get all filings for a company by CIK number",
+          "example": "curl -H 'User-Agent: MyApp/1.0 (contact@example.com)' 'https://data.sec.gov/submissions/CIK0000320193.json'"
+        }
+      ]
+    },
+    {
+      "name": "BuiltWith",
+      "base_url": "https://api.builtwith.com",
+      "auth": "apiKey",
+      "auth_param": "KEY",
+      "auth_location": "query",
+      "free_tier": "Free tier with limited lookups, shows technology stack for websites",
+      "key_env_var": "BUILTWITH_API_KEY",
+      "docs_url": "https://api.builtwith.com/",
+      "endpoints": [
+        {
+          "path": "/free1/api.json?KEY={key}&LOOKUP={domain}",
+          "method": "GET",
+          "desc": "Free technology lookup for a single domain",
+          "example": "curl 'https://api.builtwith.com/free1/api.json?KEY=$BUILTWITH_API_KEY&LOOKUP=stripe.com'"
+        },
+        {
+          "path": "/v21/api.json?KEY={key}&LOOKUP={domain}",
+          "method": "GET",
+          "desc": "Detailed technology profile including analytics, CDN, frameworks, and CMS",
+          "example": "curl 'https://api.builtwith.com/v21/api.json?KEY=$BUILTWITH_API_KEY&LOOKUP=github.com'"
+        }
+      ]
+    },
+    {
+      "name": "WhoisXML API",
+      "base_url": "https://www.whoisxmlapi.com/whoisserver",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "500 queries/month on free tier",
+      "key_env_var": "WHOISXML_API_KEY",
+      "docs_url": "https://whois.whoisxmlapi.com/documentation/making-requests",
+      "endpoints": [
+        {
+          "path": "/WhoisService?apiKey={key}&domainName={domain}&outputFormat=JSON",
+          "method": "GET",
+          "desc": "WHOIS lookup for domain registration, expiry, registrar, and nameservers",
+          "example": "curl 'https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=$WHOISXML_API_KEY&domainName=google.com&outputFormat=JSON'"
+        },
+        {
+          "path": "https://dns-lookup-api.whoisxmlapi.com/api/v1?apiKey={key}&domainName={domain}&type=A",
+          "method": "GET",
+          "desc": "DNS lookup for a domain with specified record type",
+          "example": "curl 'https://dns-lookup-api.whoisxmlapi.com/api/v1?apiKey=$WHOISXML_API_KEY&domainName=example.com&type=A'"
+        }
+      ]
+    },
+    {
+      "name": "Mailboxlayer",
+      "base_url": "https://apilayer.net/api",
+      "auth": "apiKey",
+      "auth_param": "access_key",
+      "auth_location": "query",
+      "free_tier": "100 requests/month on free tier",
+      "key_env_var": "MAILBOXLAYER_API_KEY",
+      "docs_url": "https://mailboxlayer.com/documentation",
+      "endpoints": [
+        {
+          "path": "/check?access_key={key}&email={email}&smtp=1&format=1",
+          "method": "GET",
+          "desc": "Validate email with format, MX, SMTP, and disposable checks",
+          "example": "curl 'https://apilayer.net/api/check?access_key=$MAILBOXLAYER_API_KEY&email=test@gmail.com&smtp=1&format=1'"
+        }
+      ]
+    },
+    {
+      "name": "VIES VAT Validation (EU)",
+      "base_url": "https://ec.europa.eu/taxation_customs/vies/rest-api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, EU official VAT number validation service",
+      "key_env_var": null,
+      "docs_url": "https://ec.europa.eu/taxation_customs/vies/#/vat-validation",
+      "endpoints": [
+        {
+          "path": "/ms/{country_code}/vat/{vat_number}",
+          "method": "GET",
+          "desc": "Validate an EU VAT number and get company name and address",
+          "example": "curl 'https://ec.europa.eu/taxation_customs/vies/rest-api/ms/DE/vat/811569869'"
+        }
+      ]
+    },
+    {
+      "name": "Brandfetch",
+      "base_url": "https://api.brandfetch.io/v2",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier with limited lookups, returns logos, colors, fonts, and brand data",
+      "key_env_var": "BRANDFETCH_API_KEY",
+      "docs_url": "https://docs.brandfetch.com/reference/get-brand",
+      "endpoints": [
+        {
+          "path": "/brands/{domain}",
+          "method": "GET",
+          "desc": "Get full brand data including logos, colors, fonts, and description",
+          "example": "curl 'https://api.brandfetch.io/v2/brands/stripe.com' -H 'Authorization: Bearer $BRANDFETCH_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "FullContact",
+      "base_url": "https://api.fullcontact.com/v3",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier with 100 matches/month for person and company enrichment",
+      "key_env_var": "FULLCONTACT_API_KEY",
+      "docs_url": "https://docs.fullcontact.com/docs/overview",
+      "endpoints": [
+        {
+          "path": "/person.enrich",
+          "method": "POST",
+          "desc": "Enrich a person by email to get social profiles, name, and demographics",
+          "example": "curl -X POST 'https://api.fullcontact.com/v3/person.enrich' -H 'Authorization: Bearer $FULLCONTACT_API_KEY' -H 'Content-Type: application/json' -d '{\"email\":\"test@example.com\"}'"
+        },
+        {
+          "path": "/company.enrich",
+          "method": "POST",
+          "desc": "Enrich a company by domain to get firmographic data",
+          "example": "curl -X POST 'https://api.fullcontact.com/v3/company.enrich' -H 'Authorization: Bearer $FULLCONTACT_API_KEY' -H 'Content-Type: application/json' -d '{\"domain\":\"stripe.com\"}'"
+        }
+      ]
+    },
+    {
+      "name": "UpLead",
+      "base_url": "https://api.uplead.com/v2",
+      "auth": "apiKey",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free trial with 5 credits for contact and company lookup",
+      "key_env_var": "UPLEAD_API_KEY",
+      "docs_url": "https://docs.uplead.com/",
+      "endpoints": [
+        {
+          "path": "/person-search",
+          "method": "GET",
+          "desc": "Search for business contacts by name, title, company, or domain",
+          "example": "curl 'https://api.uplead.com/v2/person-search?company_domain=stripe.com' -H 'Authorization: $UPLEAD_API_KEY'"
+        },
+        {
+          "path": "/company-search",
+          "method": "GET",
+          "desc": "Search companies by industry, size, revenue, and location",
+          "example": "curl 'https://api.uplead.com/v2/company-search?industry=software&employees_min=100' -H 'Authorization: $UPLEAD_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "SimilarWeb",
+      "base_url": "https://api.similarweb.com/v1",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free tier with basic website traffic overview data",
+      "key_env_var": "SIMILARWEB_API_KEY",
+      "docs_url": "https://developers.similarweb.com/docs",
+      "endpoints": [
+        {
+          "path": "/similar-ranking/{domain}/rank?api_key={key}",
+          "method": "GET",
+          "desc": "Get global and country traffic rank for a domain",
+          "example": "curl 'https://api.similarweb.com/v1/similar-ranking/google.com/rank?api_key=$SIMILARWEB_API_KEY'"
+        },
+        {
+          "path": "/website/{domain}/total-traffic-and-engagement/visits?api_key={key}&start_date=2024-01&end_date=2024-03&country=world&granularity=monthly",
+          "method": "GET",
+          "desc": "Get monthly visit estimates and engagement metrics",
+          "example": "curl 'https://api.similarweb.com/v1/website/stripe.com/total-traffic-and-engagement/visits?api_key=$SIMILARWEB_API_KEY&start_date=2024-01&end_date=2024-03&country=world&granularity=monthly'"
+        }
+      ]
+    },
+    {
+      "name": "Google Places API",
+      "base_url": "https://maps.googleapis.com/maps/api/place",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "$200/month free credit (~5,000 text searches), requires billing account",
+      "key_env_var": "GOOGLE_PLACES_API_KEY",
+      "docs_url": "https://developers.google.com/maps/documentation/places/web-service",
+      "endpoints": [
+        {
+          "path": "/textsearch/json?query={query}&key={key}",
+          "method": "GET",
+          "desc": "Search places by text query (e.g., restaurants in San Francisco)",
+          "example": "curl 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+shops+in+austin&key=$GOOGLE_PLACES_API_KEY'"
+        },
+        {
+          "path": "/details/json?place_id={place_id}&fields=name,rating,formatted_phone_number,website,reviews&key={key}",
+          "method": "GET",
+          "desc": "Get detailed info for a specific place including reviews and contact",
+          "example": "curl 'https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number,website&key=$GOOGLE_PLACES_API_KEY'"
+        },
+        {
+          "path": "/nearbysearch/json?location={lat},{lng}&radius={meters}&type={type}&key={key}",
+          "method": "GET",
+          "desc": "Search for places near a location by type (restaurant, gym, etc.)",
+          "example": "curl 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.267,-97.743&radius=1500&type=restaurant&key=$GOOGLE_PLACES_API_KEY'"
+        }
+      ]
     }
   ]
 }

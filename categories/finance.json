@@ -175,6 +175,294 @@
           "example": "curl 'https://api.twelvedata.com/quote?symbol=GOOGL&apikey=$TWELVE_DATA_API_KEY'"
         }
       ]
+    },
+    {
+      "name": "Yahoo Finance (Unofficial)",
+      "base_url": "https://query1.finance.yahoo.com/v8",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, unofficial endpoints, rate limited",
+      "key_env_var": null,
+      "docs_url": "https://github.com/ranaroussi/yfinance",
+      "endpoints": [
+        {
+          "path": "/finance/chart/{symbol}?interval=1d&range=1mo",
+          "method": "GET",
+          "desc": "Historical price chart data for a stock or ETF",
+          "example": "curl 'https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=1mo'"
+        },
+        {
+          "path": "/finance/chart/{symbol}?interval=5m&range=1d",
+          "method": "GET",
+          "desc": "Intraday chart data at 5-minute intervals",
+          "example": "curl 'https://query1.finance.yahoo.com/v8/finance/chart/TSLA?interval=5m&range=1d'"
+        },
+        {
+          "path": "/finance/chart/{symbol}?interval=1wk&range=1y",
+          "method": "GET",
+          "desc": "Weekly price data for the past year",
+          "example": "curl 'https://query1.finance.yahoo.com/v8/finance/chart/MSFT?interval=1wk&range=1y'"
+        }
+      ]
+    },
+    {
+      "name": "Polygon.io",
+      "base_url": "https://api.polygon.io",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "5 API calls/minute, end-of-day data, 2 years historical",
+      "key_env_var": "POLYGON_API_KEY",
+      "docs_url": "https://polygon.io/docs/stocks",
+      "endpoints": [
+        {
+          "path": "/v2/aggs/ticker/{symbol}/prev?adjusted=true&apiKey={key}",
+          "method": "GET",
+          "desc": "Previous day's OHLCV bar for a stock ticker",
+          "example": "curl 'https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey=$POLYGON_API_KEY'"
+        },
+        {
+          "path": "/v2/aggs/ticker/{symbol}/range/1/day/{from}/{to}?adjusted=true&apiKey={key}",
+          "method": "GET",
+          "desc": "Aggregate bars for a stock over a date range",
+          "example": "curl 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2026-01-01/2026-03-01?adjusted=true&apiKey=$POLYGON_API_KEY'"
+        },
+        {
+          "path": "/v3/reference/tickers?search={query}&active=true&limit=10&apiKey={key}",
+          "method": "GET",
+          "desc": "Search for stock tickers by name or symbol",
+          "example": "curl 'https://api.polygon.io/v3/reference/tickers?search=apple&active=true&limit=10&apiKey=$POLYGON_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "IEX Cloud",
+      "base_url": "https://cloud.iexapis.com/stable",
+      "auth": "apiKey",
+      "auth_param": "token",
+      "auth_location": "query",
+      "free_tier": "Free tier with limited message credits, core data access",
+      "key_env_var": "IEX_CLOUD_API_KEY",
+      "docs_url": "https://iexcloud.io/docs/",
+      "endpoints": [
+        {
+          "path": "/stock/{symbol}/quote?token={key}",
+          "method": "GET",
+          "desc": "Real-time stock quote with key metrics",
+          "example": "curl 'https://cloud.iexapis.com/stable/stock/AAPL/quote?token=$IEX_CLOUD_API_KEY'"
+        },
+        {
+          "path": "/stock/{symbol}/chart/1m?token={key}",
+          "method": "GET",
+          "desc": "Historical price data for the last month",
+          "example": "curl 'https://cloud.iexapis.com/stable/stock/MSFT/chart/1m?token=$IEX_CLOUD_API_KEY'"
+        },
+        {
+          "path": "/stock/{symbol}/company?token={key}",
+          "method": "GET",
+          "desc": "Company profile including sector, industry, and description",
+          "example": "curl 'https://cloud.iexapis.com/stable/stock/GOOGL/company?token=$IEX_CLOUD_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Binance",
+      "base_url": "https://api.binance.com/api/v3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public endpoints, 1200 requests/minute",
+      "key_env_var": null,
+      "docs_url": "https://binance-docs.github.io/apidocs/spot/en/",
+      "endpoints": [
+        {
+          "path": "/ticker/price?symbol={symbol}",
+          "method": "GET",
+          "desc": "Latest price for a trading pair",
+          "example": "curl 'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'"
+        },
+        {
+          "path": "/ticker/24hr?symbol={symbol}",
+          "method": "GET",
+          "desc": "24-hour rolling price change statistics",
+          "example": "curl 'https://api.binance.com/api/v3/ticker/24hr?symbol=ETHUSDT'"
+        },
+        {
+          "path": "/klines?symbol={symbol}&interval=1d&limit=30",
+          "method": "GET",
+          "desc": "Kline/candlestick data for a trading pair",
+          "example": "curl 'https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=30'"
+        }
+      ]
+    },
+    {
+      "name": "Kraken",
+      "base_url": "https://api.kraken.com/0/public",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public endpoints, 1 request/second",
+      "key_env_var": null,
+      "docs_url": "https://docs.kraken.com/rest/",
+      "endpoints": [
+        {
+          "path": "/Ticker?pair={pair}",
+          "method": "GET",
+          "desc": "Current ticker info including ask, bid, last trade, volume",
+          "example": "curl 'https://api.kraken.com/0/public/Ticker?pair=XBTUSD'"
+        },
+        {
+          "path": "/OHLC?pair={pair}&interval=1440",
+          "method": "GET",
+          "desc": "OHLC candlestick data at specified interval (minutes)",
+          "example": "curl 'https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=1440'"
+        },
+        {
+          "path": "/Assets",
+          "method": "GET",
+          "desc": "List all available assets and their details",
+          "example": "curl 'https://api.kraken.com/0/public/Assets'"
+        }
+      ]
+    },
+    {
+      "name": "Fixer.io",
+      "base_url": "https://data.fixer.io/api",
+      "auth": "apiKey",
+      "auth_param": "access_key",
+      "auth_location": "query",
+      "free_tier": "100 requests/month, EUR base only on free tier",
+      "key_env_var": "FIXER_API_KEY",
+      "docs_url": "https://fixer.io/documentation",
+      "endpoints": [
+        {
+          "path": "/latest?access_key={key}&symbols=USD,GBP,JPY",
+          "method": "GET",
+          "desc": "Latest exchange rates from EUR base to specified currencies",
+          "example": "curl 'https://data.fixer.io/api/latest?access_key=$FIXER_API_KEY&symbols=USD,GBP,JPY'"
+        },
+        {
+          "path": "/{date}?access_key={key}&symbols=USD,GBP",
+          "method": "GET",
+          "desc": "Historical exchange rates for a specific date (YYYY-MM-DD)",
+          "example": "curl 'https://data.fixer.io/api/2026-01-15?access_key=$FIXER_API_KEY&symbols=USD,GBP'"
+        },
+        {
+          "path": "/symbols?access_key={key}",
+          "method": "GET",
+          "desc": "List all available currency symbols",
+          "example": "curl 'https://data.fixer.io/api/symbols?access_key=$FIXER_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Coinbase",
+      "base_url": "https://api.coinbase.com/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for exchange rate endpoints",
+      "key_env_var": null,
+      "docs_url": "https://docs.cloud.coinbase.com/sign-in-with-coinbase/docs/api-exchange-rates",
+      "endpoints": [
+        {
+          "path": "/exchange-rates?currency={currency}",
+          "method": "GET",
+          "desc": "Exchange rates for a given currency against all others",
+          "example": "curl 'https://api.coinbase.com/v2/exchange-rates?currency=BTC'"
+        },
+        {
+          "path": "/prices/{pair}/spot",
+          "method": "GET",
+          "desc": "Current spot price for a currency pair",
+          "example": "curl 'https://api.coinbase.com/v2/prices/BTC-USD/spot'"
+        },
+        {
+          "path": "/currencies",
+          "method": "GET",
+          "desc": "List all supported fiat currencies",
+          "example": "curl 'https://api.coinbase.com/v2/currencies'"
+        }
+      ]
+    },
+    {
+      "name": "Morningstar",
+      "base_url": "https://api-global.morningstar.com/sal-service/v1",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "header",
+      "free_tier": "Limited free endpoints for basic fund/stock data",
+      "key_env_var": "MORNINGSTAR_API_KEY",
+      "docs_url": "https://developer.morningstar.com/direct-web-services/documentation",
+      "endpoints": [
+        {
+          "path": "/stock/valuation/v2/{secId}?apikey={key}",
+          "method": "GET",
+          "desc": "Valuation metrics for a stock (P/E, P/B, P/S ratios)",
+          "example": "curl -H 'apikey: $MORNINGSTAR_API_KEY' 'https://api-global.morningstar.com/sal-service/v1/stock/valuation/v2/0P0000OQN8'"
+        },
+        {
+          "path": "/stock/newKeyStats/{secId}?apikey={key}",
+          "method": "GET",
+          "desc": "Key statistics including market cap, dividend yield, and growth",
+          "example": "curl -H 'apikey: $MORNINGSTAR_API_KEY' 'https://api-global.morningstar.com/sal-service/v1/stock/newKeyStats/0P0000OQN8'"
+        }
+      ]
+    },
+    {
+      "name": "World Bank API",
+      "base_url": "https://api.worldbank.org/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generous rate limits",
+      "key_env_var": null,
+      "docs_url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392",
+      "endpoints": [
+        {
+          "path": "/country/{country_code}/indicator/NY.GDP.MKTP.CD?format=json&date=2015:2024",
+          "method": "GET",
+          "desc": "GDP data for a country over a date range",
+          "example": "curl 'https://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD?format=json&date=2015:2024'"
+        },
+        {
+          "path": "/country/{country_code}/indicator/FP.CPI.TOTL.ZG?format=json&mrv=10",
+          "method": "GET",
+          "desc": "Inflation rate (consumer prices, annual %) for most recent values",
+          "example": "curl 'https://api.worldbank.org/v2/country/US/indicator/FP.CPI.TOTL.ZG?format=json&mrv=10'"
+        },
+        {
+          "path": "/country?format=json&per_page=300",
+          "method": "GET",
+          "desc": "List all countries with income level, region, and codes",
+          "example": "curl 'https://api.worldbank.org/v2/country?format=json&per_page=300'"
+        }
+      ]
+    },
+    {
+      "name": "OpenFIGI",
+      "base_url": "https://api.openfigi.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 5 requests/minute (25/min with free API key)",
+      "key_env_var": null,
+      "docs_url": "https://www.openfigi.com/api",
+      "endpoints": [
+        {
+          "path": "/v3/mapping",
+          "method": "POST",
+          "desc": "Map financial identifiers (ticker, CUSIP, ISIN) to FIGI",
+          "example": "curl -X POST 'https://api.openfigi.com/v3/mapping' -H 'Content-Type: application/json' -d '[{\"idType\":\"TICKER\",\"idValue\":\"AAPL\"}]'"
+        },
+        {
+          "path": "/v3/search",
+          "method": "POST",
+          "desc": "Search for financial instruments by name or keyword",
+          "example": "curl -X POST 'https://api.openfigi.com/v3/search' -H 'Content-Type: application/json' -d '{\"query\":\"Apple Inc\"}'"
+        }
+      ]
     }
   ]
 }

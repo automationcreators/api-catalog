@@ -1,70 +1,291 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "last_updated": "2026-03-12",
-  "total_apis": 60,
+  "total_apis": 190,
   "categories": [
-    {
-      "name": "finance",
-      "file": "categories/finance.json",
-      "api_count": 6,
-      "apis": ["Alpha Vantage", "CoinGecko", "Finnhub", "FRED", "ExchangeRate-API", "Twelve Data"]
-    },
-    {
-      "name": "weather",
-      "file": "categories/weather.json",
-      "api_count": 6,
-      "apis": ["OpenWeatherMap", "Open-Meteo", "Weatherapi.com", "NWS (weather.gov)", "Visual Crossing", "Tomorrow.io"]
-    },
-    {
-      "name": "news",
-      "file": "categories/news.json",
-      "api_count": 6,
-      "apis": ["NewsAPI", "GNews", "Hacker News", "Wikipedia Current Events", "Mediastack", "TheNewsAPI"]
-    },
-    {
-      "name": "geo",
-      "file": "categories/geo.json",
-      "api_count": 6,
-      "apis": ["Nominatim (OpenStreetMap)", "GeoJS", "ip-api", "Zippopotam", "Abstract Geolocation", "Open-Elevation"]
-    },
-    {
-      "name": "government",
-      "file": "categories/government.json",
-      "api_count": 10,
-      "apis": ["FDA (openFDA)", "SEC (EDGAR)", "FEC", "Congress.gov", "Federal Register", "USAspending", "Census Bureau", "NOAA Climate", "NASA (APOD, NEO, Mars Rover)", "EPA (AQS)"]
-    },
-    {
-      "name": "dev-tools",
-      "file": "categories/dev-tools.json",
-      "api_count": 6,
-      "apis": ["GitHub Public API", "HTTPBin", "Public APIs List", "ip-api (Developer)", "DevDocs", "cdnjs"]
-    },
     {
       "name": "ai-ml",
       "file": "categories/ai-ml.json",
-      "api_count": 6,
-      "apis": ["Hugging Face Inference", "LibreTranslate", "Datamuse", "Perspective API", "Wit.ai", "Clarifai (Community)"]
-    },
-    {
-      "name": "social",
-      "file": "categories/social.json",
-      "api_count": 6,
-      "apis": ["Reddit JSON API", "Hacker News (Algolia)", "Wikipedia API", "Wikidata", "Open Library", "MusicBrainz"]
+      "api_count": 22,
+      "apis": [
+        "HuggingFace Inference API",
+        "Replicate",
+        "OpenAI",
+        "Stability AI",
+        "DeepL",
+        "LibreTranslate",
+        "Ollama",
+        "OpenRouter",
+        "Groq",
+        "Together AI",
+        "ElevenLabs",
+        "AssemblyAI",
+        "Deepgram",
+        "Clarifai",
+        "Roboflow",
+        "OCR.space",
+        "LanguageTool",
+        "MyMemory Translation",
+        "Datamuse",
+        "Text-Processing.com",
+        "Wolfram Alpha",
+        "VoiceRSS"
+      ]
     },
     {
       "name": "business",
       "file": "categories/business.json",
-      "api_count": 6,
-      "apis": ["Clearbit Logo", "Open Food Facts", "REST Countries", "Universities API", "Charity Navigator", "Open Corporates"]
+      "api_count": 19,
+      "apis": [
+        "Hunter.io",
+        "Clearbit Logo API",
+        "Companies House UK",
+        "Open Corporates",
+        "Abstract API (Email Validation)",
+        "ZeroBounce",
+        "Apollo.io",
+        "Crunchbase",
+        "Glassdoor (Unofficial)",
+        "SEC EDGAR Company Search",
+        "BuiltWith",
+        "WhoisXML API",
+        "Mailboxlayer",
+        "VIES VAT Validation (EU)",
+        "Brandfetch",
+        "FullContact",
+        "UpLead",
+        "SimilarWeb",
+        "Google Places API"
+      ]
+    },
+    {
+      "name": "dev-tools",
+      "file": "categories/dev-tools.json",
+      "api_count": 26,
+      "apis": [
+        "GitHub API",
+        "GitLab API",
+        "npm Registry",
+        "crates.io (Rust Registry)",
+        "PyPI (Python Package Index)",
+        "Libraries.io",
+        "Postman Echo",
+        "HTTPBin",
+        "JSONPlaceholder",
+        "ReqRes",
+        "Shields.io",
+        "Carbon (Code Screenshots)",
+        "Ray.so (Code Screenshots)",
+        "DevDocs.io",
+        "StackExchange API",
+        "Snyk",
+        "OSV.dev",
+        "Wayback Machine API",
+        "W3C Validator",
+        "SSL Labs API",
+        "CleanURI",
+        "QR Code Generator (goqr.me)",
+        "Plausible Analytics",
+        "Render API",
+        "Fly.io API",
+        "Netlify API"
+      ]
+    },
+    {
+      "name": "finance",
+      "file": "categories/finance.json",
+      "api_count": 16,
+      "apis": [
+        "Alpha Vantage",
+        "CoinGecko",
+        "Finnhub",
+        "FRED (Federal Reserve Economic Data)",
+        "ExchangeRate-API",
+        "Twelve Data",
+        "Yahoo Finance (Unofficial)",
+        "Polygon.io",
+        "IEX Cloud",
+        "Binance",
+        "Kraken",
+        "Fixer.io",
+        "Coinbase",
+        "Morningstar",
+        "World Bank API",
+        "OpenFIGI"
+      ]
+    },
+    {
+      "name": "geo",
+      "file": "categories/geo.json",
+      "api_count": 15,
+      "apis": [
+        "Nominatim (OpenStreetMap)",
+        "IP-API",
+        "OpenCage Geocoding",
+        "BigDataCloud",
+        "ipinfo.io",
+        "ipgeolocation.io",
+        "REST Countries",
+        "GeoNames",
+        "Mapbox",
+        "What3Words",
+        "Zippopotam.us",
+        "TimeZoneDB",
+        "CountryIS",
+        "Abstract IP Geolocation",
+        "Geoapify"
+      ]
+    },
+    {
+      "name": "government",
+      "file": "categories/government.json",
+      "api_count": 22,
+      "apis": [
+        "FRED (Federal Reserve Economic Data)",
+        "Bureau of Labor Statistics (BLS)",
+        "Census Bureau",
+        "USASpending.gov",
+        "Data.gov (CKAN API)",
+        "NASA APOD (Astronomy Picture of the Day)",
+        "NASA NEO (Near Earth Objects)",
+        "NASA Mars Rover Photos",
+        "SEC EDGAR Full-Text Search",
+        "Congress.gov API",
+        "Federal Register API",
+        "FBI Crime Data API",
+        "EPA Air Quality (AirNow)",
+        "USGS Earthquake API",
+        "Bureau of Economic Analysis (BEA)",
+        "Open Sanctions",
+        "UK Parliament API",
+        "EU Open Data Portal",
+        "World Bank Indicators",
+        "WHO Global Health Observatory (GHO)",
+        "UN Data API",
+        "OpenFDA"
+      ]
     },
     {
       "name": "jobs",
       "file": "categories/jobs.json",
-      "api_count": 6,
-      "apis": ["Adzuna", "Arbeitnow", "Remotive", "The Muse", "Jooble", "Reed.co.uk"]
+      "api_count": 20,
+      "apis": [
+        "Adzuna",
+        "RemoteOK",
+        "Arbeitnow",
+        "JSearch (via RapidAPI)",
+        "Reed.co.uk",
+        "The Muse",
+        "LinkedIn Jobs (Unofficial)",
+        "Indeed (via Scraping)",
+        "Glassdoor Jobs (Unofficial)",
+        "Wellfound (AngelList)",
+        "We Work Remotely (RSS)",
+        "JustRemote",
+        "Working Nomads",
+        "Himalayas.app",
+        "4DayWeek.io",
+        "Startup.jobs",
+        "Jobicy",
+        "Authentic Jobs",
+        "Dribbble Jobs",
+        "Landing.jobs"
+      ]
+    },
+    {
+      "name": "news",
+      "file": "categories/news.json",
+      "api_count": 16,
+      "apis": [
+        "NewsAPI",
+        "HackerNews Algolia API",
+        "Reddit JSON API",
+        "GNews",
+        "TheNewsAPI",
+        "Currents API",
+        "Spaceflight News API",
+        "Wikipedia Current Events",
+        "Event Registry",
+        "Newscatcher",
+        "GDELT Project",
+        "Mediastack",
+        "Thenewsapi.com",
+        "Associated Press API",
+        "NPR API",
+        "RSS2JSON"
+      ]
+    },
+    {
+      "name": "social",
+      "file": "categories/social.json",
+      "api_count": 18,
+      "apis": [
+        "Reddit JSON API",
+        "HackerNews Firebase API",
+        "Product Hunt API",
+        "DEV.to API",
+        "Mastodon API",
+        "Stack Exchange API",
+        "Lobsters",
+        "Discourse API",
+        "Fediverse / ActivityPub",
+        "Wikipedia API (MediaWiki)",
+        "Wikidata SPARQL",
+        "Archive.org (Internet Archive)",
+        "Open Library",
+        "MusicBrainz",
+        "Board Game Geek (BGG) API",
+        "Jikan (MyAnimeList Unofficial)",
+        "RAWG (Video Games Database)",
+        "Lemmy API"
+      ]
+    },
+    {
+      "name": "weather",
+      "file": "categories/weather.json",
+      "api_count": 16,
+      "apis": [
+        "OpenWeatherMap",
+        "Open-Meteo",
+        "WeatherAPI",
+        "Visual Crossing",
+        "Tomorrow.io",
+        "Weatherbit",
+        "AmbientWeather",
+        "Storm Glass",
+        "Oikolab (Historical Weather)",
+        "Bright Sky (German Weather)",
+        "AEMET (Spanish Weather)",
+        "Environment Canada Weather",
+        "World Air Quality Index (WAQI)",
+        "Google Pollen API",
+        "UV Index API (Open-Meteo)",
+        "National Weather Service"
+      ]
     }
   ],
   "skills": [
+    {
+      "name": "ai-ml-apis",
+      "path": "skills/ai-ml-apis/SKILL.md",
+      "category": "ai-ml",
+      "slash_command": "/ai-ml-apis",
+      "description": "Translation, NLP, inference, speech, vision"
+    },
+    {
+      "name": "business-apis",
+      "path": "skills/business-apis/SKILL.md",
+      "category": "business",
+      "slash_command": "/business-apis",
+      "description": "Company lookup, email finding, lead enrichment"
+    },
+    {
+      "name": "dev-tools-apis",
+      "path": "skills/dev-tools-apis/SKILL.md",
+      "category": "dev-tools",
+      "slash_command": "/dev-tools-apis",
+      "description": "GitHub, npm, testing, badges, security scanning"
+    },
     {
       "name": "finance-apis",
       "path": "skills/finance-apis/SKILL.md",
@@ -73,60 +294,18 @@
       "description": "Stock prices, crypto, forex, economic data"
     },
     {
-      "name": "weather-apis",
-      "path": "skills/weather-apis/SKILL.md",
-      "category": "weather",
-      "slash_command": "/weather-apis",
-      "description": "Current weather, forecasts, historical climate"
-    },
-    {
-      "name": "news-apis",
-      "path": "skills/news-apis/SKILL.md",
-      "category": "news",
-      "slash_command": "/news-apis",
-      "description": "Headlines, articles, tech news, current events"
-    },
-    {
       "name": "geo-apis",
       "path": "skills/geo-apis/SKILL.md",
       "category": "geo",
       "slash_command": "/geo-apis",
-      "description": "Geocoding, IP geolocation, ZIP lookup, elevation"
+      "description": "Geocoding, IP geolocation, countries, timezones"
     },
     {
       "name": "government-apis",
       "path": "skills/government-apis/SKILL.md",
       "category": "government",
       "slash_command": "/government-apis",
-      "description": "FDA, SEC, Congress, NASA, Census, EPA data"
-    },
-    {
-      "name": "dev-tools-apis",
-      "path": "skills/dev-tools-apis/SKILL.md",
-      "category": "dev-tools",
-      "slash_command": "/dev-tools-apis",
-      "description": "GitHub repos, HTTP testing, CDN, documentation"
-    },
-    {
-      "name": "ai-ml-apis",
-      "path": "skills/ai-ml-apis/SKILL.md",
-      "category": "ai-ml",
-      "slash_command": "/ai-ml-apis",
-      "description": "Translation, NLP, language detection, word associations"
-    },
-    {
-      "name": "social-apis",
-      "path": "skills/social-apis/SKILL.md",
-      "category": "social",
-      "slash_command": "/social-apis",
-      "description": "Reddit, Wikipedia, Open Library, music metadata"
-    },
-    {
-      "name": "business-apis",
-      "path": "skills/business-apis/SKILL.md",
-      "category": "business",
-      "slash_command": "/business-apis",
-      "description": "Company logos, food data, countries, universities"
+      "description": "FDA, SEC, NASA, Congress, Census, EPA, WHO"
     },
     {
       "name": "jobs-apis",
@@ -134,6 +313,27 @@
       "category": "jobs",
       "slash_command": "/jobs-apis",
       "description": "Job listings, remote work, salary data"
+    },
+    {
+      "name": "news-apis",
+      "path": "skills/news-apis/SKILL.md",
+      "category": "news",
+      "slash_command": "/news-apis",
+      "description": "Headlines, articles, tech news, global events"
+    },
+    {
+      "name": "social-apis",
+      "path": "skills/social-apis/SKILL.md",
+      "category": "social",
+      "slash_command": "/social-apis",
+      "description": "Reddit, Wikipedia, HN, Stack Exchange, Open Library"
+    },
+    {
+      "name": "weather-apis",
+      "path": "skills/weather-apis/SKILL.md",
+      "category": "weather",
+      "slash_command": "/weather-apis",
+      "description": "Forecasts, air quality, historical climate, UV index"
     }
   ]
 }

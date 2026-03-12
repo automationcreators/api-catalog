@@ -1,6 +1,6 @@
 {
   "category": "government",
-  "description": "US federal government data including economic indicators, labor statistics, census data, and spending",
+  "description": "US federal, international government, and intergovernmental data including economic indicators, labor statistics, census data, spending, space, environment, health, and legislation",
   "apis": [
     {
       "name": "FRED (Federal Reserve Economic Data)",
@@ -143,6 +143,420 @@
           "method": "GET",
           "desc": "List all available dataset tags for filtering",
           "example": "curl 'https://catalog.data.gov/api/3/action/tag_list'"
+        }
+      ]
+    },
+    {
+      "name": "NASA APOD (Astronomy Picture of the Day)",
+      "base_url": "https://api.nasa.gov",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free key, 1,000 requests/hour. DEMO_KEY available at 30/hour",
+      "key_env_var": "NASA_API_KEY",
+      "docs_url": "https://api.nasa.gov/",
+      "endpoints": [
+        {
+          "path": "/planetary/apod?api_key={key}",
+          "method": "GET",
+          "desc": "Get today's Astronomy Picture of the Day with explanation",
+          "example": "curl 'https://api.nasa.gov/planetary/apod?api_key=$NASA_API_KEY'"
+        },
+        {
+          "path": "/planetary/apod?api_key={key}&date={date}",
+          "method": "GET",
+          "desc": "Get APOD for a specific date (YYYY-MM-DD format)",
+          "example": "curl 'https://api.nasa.gov/planetary/apod?api_key=$NASA_API_KEY&date=2025-12-25'"
+        },
+        {
+          "path": "/planetary/apod?api_key={key}&count=5",
+          "method": "GET",
+          "desc": "Get N random APOD entries",
+          "example": "curl 'https://api.nasa.gov/planetary/apod?api_key=$NASA_API_KEY&count=5'"
+        }
+      ]
+    },
+    {
+      "name": "NASA NEO (Near Earth Objects)",
+      "base_url": "https://api.nasa.gov",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free key, 1,000 requests/hour",
+      "key_env_var": "NASA_API_KEY",
+      "docs_url": "https://api.nasa.gov/",
+      "endpoints": [
+        {
+          "path": "/neo/rest/v1/feed?start_date={start}&end_date={end}&api_key={key}",
+          "method": "GET",
+          "desc": "Near Earth Objects approaching within a date range (max 7 days)",
+          "example": "curl 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-03-12&end_date=2026-03-15&api_key=$NASA_API_KEY'"
+        },
+        {
+          "path": "/neo/rest/v1/neo/browse?api_key={key}",
+          "method": "GET",
+          "desc": "Browse all known near-Earth asteroids (paginated)",
+          "example": "curl 'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=$NASA_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "NASA Mars Rover Photos",
+      "base_url": "https://api.nasa.gov",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free key, 1,000 requests/hour",
+      "key_env_var": "NASA_API_KEY",
+      "docs_url": "https://api.nasa.gov/",
+      "endpoints": [
+        {
+          "path": "/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key={key}",
+          "method": "GET",
+          "desc": "Get Curiosity rover photos by Martian sol (day)",
+          "example": "curl 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=$NASA_API_KEY'"
+        },
+        {
+          "path": "/mars-photos/api/v1/rovers/perseverance/photos?earth_date={date}&api_key={key}",
+          "method": "GET",
+          "desc": "Get Perseverance rover photos by Earth date",
+          "example": "curl 'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2025-06-01&api_key=$NASA_API_KEY'"
+        },
+        {
+          "path": "/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key={key}",
+          "method": "GET",
+          "desc": "Get the most recent photos from Curiosity",
+          "example": "curl 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=$NASA_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "SEC EDGAR Full-Text Search",
+      "base_url": "https://efts.sec.gov/LATEST",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 10 requests/second, User-Agent with email required",
+      "key_env_var": null,
+      "docs_url": "https://efts.sec.gov/LATEST/search-index?q=&dateRange=custom",
+      "endpoints": [
+        {
+          "path": "/search-index?q={query}&dateRange=custom&startdt={start}&enddt={end}",
+          "method": "GET",
+          "desc": "Full-text search of SEC filings (10-K, 10-Q, 8-K, etc.)",
+          "example": "curl -H 'User-Agent: api-catalog admin@example.com' 'https://efts.sec.gov/LATEST/search-index?q=artificial+intelligence&dateRange=custom&startdt=2025-01-01&enddt=2025-12-31'"
+        },
+        {
+          "path": "/search-index?q={query}&forms=10-K",
+          "method": "GET",
+          "desc": "Search filings filtered by form type",
+          "example": "curl -H 'User-Agent: api-catalog admin@example.com' 'https://efts.sec.gov/LATEST/search-index?q=revenue+decline&forms=10-K'"
+        }
+      ]
+    },
+    {
+      "name": "Congress.gov API",
+      "base_url": "https://api.congress.gov/v3",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free key required, 5,000 requests/hour",
+      "key_env_var": "CONGRESS_API_KEY",
+      "docs_url": "https://api.congress.gov/",
+      "endpoints": [
+        {
+          "path": "/bill?api_key={key}&limit=20",
+          "method": "GET",
+          "desc": "List recent bills introduced in Congress",
+          "example": "curl 'https://api.congress.gov/v3/bill?api_key=$CONGRESS_API_KEY&limit=20'"
+        },
+        {
+          "path": "/bill/{congress}/{billType}/{billNumber}?api_key={key}",
+          "method": "GET",
+          "desc": "Get details of a specific bill by congress number and bill ID",
+          "example": "curl 'https://api.congress.gov/v3/bill/118/hr/1?api_key=$CONGRESS_API_KEY'"
+        },
+        {
+          "path": "/member?api_key={key}&limit=20",
+          "method": "GET",
+          "desc": "List current members of Congress",
+          "example": "curl 'https://api.congress.gov/v3/member?api_key=$CONGRESS_API_KEY&limit=20'"
+        }
+      ]
+    },
+    {
+      "name": "Federal Register API",
+      "base_url": "https://www.federalregister.gov/api/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://www.federalregister.gov/developers/documentation/api/v1",
+      "endpoints": [
+        {
+          "path": "/documents.json?conditions[term]={query}&per_page=10",
+          "method": "GET",
+          "desc": "Search Federal Register documents by keyword",
+          "example": "curl 'https://www.federalregister.gov/api/v1/documents.json?conditions[term]=artificial+intelligence&per_page=10'"
+        },
+        {
+          "path": "/documents/{document_number}.json",
+          "method": "GET",
+          "desc": "Get a specific Federal Register document by number",
+          "example": "curl 'https://www.federalregister.gov/api/v1/documents/2025-01234.json'"
+        },
+        {
+          "path": "/documents.json?conditions[agencies][]={agency}&conditions[type][]=RULE&per_page=10",
+          "method": "GET",
+          "desc": "Get rules published by a specific agency",
+          "example": "curl 'https://www.federalregister.gov/api/v1/documents.json?conditions[agencies][]=environmental-protection-agency&conditions[type][]=RULE&per_page=10'"
+        }
+      ]
+    },
+    {
+      "name": "FBI Crime Data API",
+      "base_url": "https://api.usa.gov/crime/fbi/cde",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://crime-data-explorer.fr.cloud.gov/pages/docApi",
+      "endpoints": [
+        {
+          "path": "/estimate/national?year={year}",
+          "method": "GET",
+          "desc": "National crime estimate data for a given year",
+          "example": "curl 'https://api.usa.gov/crime/fbi/cde/estimate/national?year=2023'"
+        },
+        {
+          "path": "/arrest/national/{offense}?year={year}",
+          "method": "GET",
+          "desc": "National arrest data by offense category",
+          "example": "curl 'https://api.usa.gov/crime/fbi/cde/arrest/national/burglary?year=2023'"
+        }
+      ]
+    },
+    {
+      "name": "EPA Air Quality (AirNow)",
+      "base_url": "https://www.airnowapi.org/aq",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for basic endpoints, data updated hourly",
+      "key_env_var": null,
+      "docs_url": "https://docs.airnowapi.org/",
+      "endpoints": [
+        {
+          "path": "/observation/zipCode/current/?format=application/json&zipCode={zip}&distance=25",
+          "method": "GET",
+          "desc": "Current air quality observations by ZIP code",
+          "example": "curl 'https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=85001&distance=25'"
+        },
+        {
+          "path": "/forecast/zipCode/?format=application/json&zipCode={zip}",
+          "method": "GET",
+          "desc": "Air quality forecast by ZIP code",
+          "example": "curl 'https://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=85001'"
+        }
+      ]
+    },
+    {
+      "name": "USGS Earthquake API",
+      "base_url": "https://earthquake.usgs.gov/fdsnws/event/1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "endpoints": [
+        {
+          "path": "/query?format=geojson&starttime={start}&endtime={end}&minmagnitude=4",
+          "method": "GET",
+          "desc": "Query earthquakes by date range and minimum magnitude",
+          "example": "curl 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-03-01&endtime=2026-03-12&minmagnitude=4'"
+        },
+        {
+          "path": "/query?format=geojson&latitude={lat}&longitude={lon}&maxradiuskm=100&minmagnitude=2",
+          "method": "GET",
+          "desc": "Earthquakes near a geographic point within a radius",
+          "example": "curl 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=33.45&longitude=-112.07&maxradiuskm=200&minmagnitude=2'"
+        }
+      ]
+    },
+    {
+      "name": "Bureau of Economic Analysis (BEA)",
+      "base_url": "https://apps.bea.gov/api/data",
+      "auth": "apiKey",
+      "auth_param": "UserID",
+      "auth_location": "query",
+      "free_tier": "Free key required, 100 requests/minute",
+      "key_env_var": "BEA_API_KEY",
+      "docs_url": "https://apps.bea.gov/api/signup/",
+      "endpoints": [
+        {
+          "path": "/?method=GetData&DataSetName=NIPA&TableName=T10101&Frequency=Q&Year=ALL&ResultFormat=JSON&UserID={key}",
+          "method": "GET",
+          "desc": "GDP and national income data (NIPA tables)",
+          "example": "curl 'https://apps.bea.gov/api/data/?method=GetData&DataSetName=NIPA&TableName=T10101&Frequency=Q&Year=2025&ResultFormat=JSON&UserID=$BEA_API_KEY'"
+        },
+        {
+          "path": "/?method=GetParameterValues&DataSetName=Regional&ParameterName=TableName&ResultFormat=JSON&UserID={key}",
+          "method": "GET",
+          "desc": "List available regional data tables",
+          "example": "curl 'https://apps.bea.gov/api/data/?method=GetParameterValues&DataSetName=Regional&ParameterName=TableName&ResultFormat=JSON&UserID=$BEA_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Open Sanctions",
+      "base_url": "https://api.opensanctions.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for basic lookups, rate limited",
+      "key_env_var": null,
+      "docs_url": "https://www.opensanctions.org/docs/api/",
+      "endpoints": [
+        {
+          "path": "/search/default?q={query}&limit=10",
+          "method": "GET",
+          "desc": "Search sanctions and PEP lists by entity name",
+          "example": "curl 'https://api.opensanctions.org/search/default?q=Gazprom&limit=10'"
+        },
+        {
+          "path": "/entities/{entity_id}",
+          "method": "GET",
+          "desc": "Get full entity details by OpenSanctions ID",
+          "example": "curl 'https://api.opensanctions.org/entities/Q102673'"
+        }
+      ]
+    },
+    {
+      "name": "UK Parliament API",
+      "base_url": "https://members-api.parliament.uk/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://members-api.parliament.uk/index.html",
+      "endpoints": [
+        {
+          "path": "/Members/Search?Name={name}&IsCurrentMember=true",
+          "method": "GET",
+          "desc": "Search current Members of Parliament by name",
+          "example": "curl 'https://members-api.parliament.uk/api/Members/Search?Name=Starmer&IsCurrentMember=true'"
+        },
+        {
+          "path": "/Members/{id}",
+          "method": "GET",
+          "desc": "Get detailed info for a specific MP by member ID",
+          "example": "curl 'https://members-api.parliament.uk/api/Members/4514'"
+        }
+      ]
+    },
+    {
+      "name": "EU Open Data Portal",
+      "base_url": "https://data.europa.eu/api/hub/search",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://data.europa.eu/en/developers-corner",
+      "endpoints": [
+        {
+          "path": "/datasets?q={query}&limit=10",
+          "method": "GET",
+          "desc": "Search EU open datasets by keyword",
+          "example": "curl 'https://data.europa.eu/api/hub/search/datasets?q=renewable+energy&limit=10'"
+        },
+        {
+          "path": "/datasets/{id}",
+          "method": "GET",
+          "desc": "Get metadata for a specific dataset",
+          "example": "curl 'https://data.europa.eu/api/hub/search/datasets/eurostat-energy'"
+        }
+      ]
+    },
+    {
+      "name": "World Bank Indicators",
+      "base_url": "https://api.worldbank.org/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+      "endpoints": [
+        {
+          "path": "/country/{country}/indicator/{indicator}?format=json&date=2020:2025",
+          "method": "GET",
+          "desc": "Get indicator data for a country (GDP, population, etc.)",
+          "example": "curl 'https://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD?format=json&date=2020:2025'"
+        },
+        {
+          "path": "/country/all/indicator/{indicator}?format=json&date=2024&per_page=50",
+          "method": "GET",
+          "desc": "Compare an indicator across all countries for a year",
+          "example": "curl 'https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2024&per_page=50'"
+        },
+        {
+          "path": "/indicator?format=json&per_page=50",
+          "method": "GET",
+          "desc": "List all available World Bank indicators",
+          "example": "curl 'https://api.worldbank.org/v2/indicator?format=json&per_page=50'"
+        }
+      ]
+    },
+    {
+      "name": "WHO Global Health Observatory (GHO)",
+      "base_url": "https://ghoapi.azureedge.net/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://www.who.int/data/gho/info/gho-odata-api",
+      "endpoints": [
+        {
+          "path": "/Indicator",
+          "method": "GET",
+          "desc": "List all available health indicators",
+          "example": "curl 'https://ghoapi.azureedge.net/api/Indicator'"
+        },
+        {
+          "path": "/{indicatorCode}?$filter=SpatialDim eq '{country}'",
+          "method": "GET",
+          "desc": "Get indicator data filtered by country ISO code",
+          "example": "curl 'https://ghoapi.azureedge.net/api/WHOSIS_000001?$filter=SpatialDim%20eq%20%27USA%27'"
+        }
+      ]
+    },
+    {
+      "name": "UN Data API",
+      "base_url": "https://data.un.org/ws/rest",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, SDMX REST API format",
+      "key_env_var": null,
+      "docs_url": "https://data.un.org/Host.aspx?Content=API",
+      "endpoints": [
+        {
+          "path": "/data/DF_UNData_WDI/A.SP_POP_TOTL..?startPeriod=2020&endPeriod=2024&format=sdmx-json",
+          "method": "GET",
+          "desc": "Get UN population data by country using SDMX format",
+          "example": "curl 'https://data.un.org/ws/rest/data/DF_UNData_WDI/A.SP_POP_TOTL.840.?startPeriod=2020&endPeriod=2024&format=sdmx-json'"
+        },
+        {
+          "path": "/dataflow/all?format=sdmx-json",
+          "method": "GET",
+          "desc": "List all available UN data flows (datasets)",
+          "example": "curl 'https://data.un.org/ws/rest/dataflow/all?format=sdmx-json'"
         }
       ]
     },

@@ -163,6 +163,270 @@
           "example": "curl 'https://www.themuse.com/api/public/companies?page=0'"
         }
       ]
+    },
+    {
+      "name": "LinkedIn Jobs (Unofficial)",
+      "base_url": "https://www.linkedin.com/jobs-guest/jobs/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "Unofficial scraping endpoints, no key required. Rate limited and may change",
+      "key_env_var": null,
+      "docs_url": "https://www.linkedin.com/developers/",
+      "endpoints": [
+        {
+          "path": "/seeMoreJobPostings/search?keywords={keywords}&location={location}&start={offset}",
+          "method": "GET",
+          "desc": "Search LinkedIn job postings by keyword and location (returns HTML, parse with scraper)",
+          "example": "curl -H 'User-Agent: Mozilla/5.0' 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=python+developer&location=remote&start=0'"
+        }
+      ]
+    },
+    {
+      "name": "Indeed (via Scraping)",
+      "base_url": "https://www.indeed.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No official API, scraping with User-Agent required. Rate limit carefully",
+      "key_env_var": null,
+      "docs_url": "https://www.indeed.com/",
+      "endpoints": [
+        {
+          "path": "/jobs?q={keywords}&l={location}&fromage=7&format=json",
+          "method": "GET",
+          "desc": "Search Indeed job listings by keyword and location (scrape HTML results)",
+          "example": "curl -H 'User-Agent: Mozilla/5.0' 'https://www.indeed.com/jobs?q=software+engineer&l=remote&fromage=7'"
+        }
+      ]
+    },
+    {
+      "name": "Glassdoor Jobs (Unofficial)",
+      "base_url": "https://www.glassdoor.com/Job",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "Unofficial scraping endpoints, no key required. Returns HTML for parsing",
+      "key_env_var": null,
+      "docs_url": "https://www.glassdoor.com/developer/index.htm",
+      "endpoints": [
+        {
+          "path": "/jobs.htm?sc.keyword={keywords}&locT=C&locId={location_id}",
+          "method": "GET",
+          "desc": "Search Glassdoor jobs by keyword and location (HTML scraping required)",
+          "example": "curl -H 'User-Agent: Mozilla/5.0' 'https://www.glassdoor.com/Job/jobs.htm?sc.keyword=software+engineer&locT=C&locId=1147401'"
+        }
+      ]
+    },
+    {
+      "name": "Wellfound (AngelList)",
+      "base_url": "https://api.wellfound.com/graphql",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier for startup job listings and company profiles",
+      "key_env_var": "WELLFOUND_API_KEY",
+      "docs_url": "https://wellfound.com/developers",
+      "endpoints": [
+        {
+          "path": "",
+          "method": "POST",
+          "desc": "GraphQL endpoint for searching startup jobs and company data",
+          "example": "curl -X POST 'https://api.wellfound.com/graphql' -H 'Authorization: Bearer $WELLFOUND_API_KEY' -H 'Content-Type: application/json' -d '{\"query\":\"{startupJobs(first:10){edges{node{title company{name}}}}}\"  }'"
+        }
+      ]
+    },
+    {
+      "name": "We Work Remotely (RSS)",
+      "base_url": "https://weworkremotely.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public RSS feeds for all categories",
+      "key_env_var": null,
+      "docs_url": "https://weworkremotely.com/",
+      "endpoints": [
+        {
+          "path": "/categories/remote-jobs.rss",
+          "method": "GET",
+          "desc": "RSS feed of all remote job listings across categories",
+          "example": "curl 'https://weworkremotely.com/categories/remote-jobs.rss'"
+        },
+        {
+          "path": "/categories/remote-programming-jobs.rss",
+          "method": "GET",
+          "desc": "RSS feed of remote programming and development jobs only",
+          "example": "curl 'https://weworkremotely.com/categories/remote-programming-jobs.rss'"
+        }
+      ]
+    },
+    {
+      "name": "JustRemote",
+      "base_url": "https://justremote.co",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public job listings page with JSON-LD structured data",
+      "key_env_var": null,
+      "docs_url": "https://justremote.co/",
+      "endpoints": [
+        {
+          "path": "/remote-developer-jobs",
+          "method": "GET",
+          "desc": "Browse remote developer job listings (scrape HTML or extract JSON-LD)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://justremote.co/remote-developer-jobs'"
+        }
+      ]
+    },
+    {
+      "name": "Working Nomads",
+      "base_url": "https://www.workingnomads.com/api/exposed_jobs",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public JSON API for remote job listings",
+      "key_env_var": null,
+      "docs_url": "https://www.workingnomads.com/api/exposed_jobs/",
+      "endpoints": [
+        {
+          "path": "/",
+          "method": "GET",
+          "desc": "Get all current remote job listings as JSON",
+          "example": "curl 'https://www.workingnomads.com/api/exposed_jobs/'"
+        }
+      ]
+    },
+    {
+      "name": "Himalayas.app",
+      "base_url": "https://himalayas.app/jobs/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public JSON API for remote jobs",
+      "key_env_var": null,
+      "docs_url": "https://himalayas.app/api",
+      "endpoints": [
+        {
+          "path": "?limit=50&offset=0",
+          "method": "GET",
+          "desc": "List remote job postings with pagination",
+          "example": "curl 'https://himalayas.app/jobs/api?limit=50&offset=0'"
+        }
+      ]
+    },
+    {
+      "name": "4DayWeek.io",
+      "base_url": "https://4dayweek.io",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public listings for 4-day work week jobs",
+      "key_env_var": null,
+      "docs_url": "https://4dayweek.io/",
+      "endpoints": [
+        {
+          "path": "/remote-jobs",
+          "method": "GET",
+          "desc": "Browse 4-day work week remote job listings (HTML, extract structured data)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://4dayweek.io/remote-jobs'"
+        }
+      ]
+    },
+    {
+      "name": "Startup.jobs",
+      "base_url": "https://startup.jobs",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public startup job listings",
+      "key_env_var": null,
+      "docs_url": "https://startup.jobs/",
+      "endpoints": [
+        {
+          "path": "/api/job_postings?page=1",
+          "method": "GET",
+          "desc": "List startup job postings with pagination",
+          "example": "curl -H 'Accept: application/json' 'https://startup.jobs/api/job_postings?page=1'"
+        }
+      ]
+    },
+    {
+      "name": "Jobicy",
+      "base_url": "https://jobicy.com/api/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, free public API for remote jobs",
+      "key_env_var": null,
+      "docs_url": "https://jobicy.com/jobs-rss-feed",
+      "endpoints": [
+        {
+          "path": "/remote-jobs?count=20&geo=usa&industry=tech&tag=python",
+          "method": "GET",
+          "desc": "Search remote jobs by geography, industry, and tag filters",
+          "example": "curl 'https://jobicy.com/api/v2/remote-jobs?count=20&geo=usa&industry=tech&tag=python'"
+        }
+      ]
+    },
+    {
+      "name": "Authentic Jobs",
+      "base_url": "https://authenticjobs.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public job board for designers and developers",
+      "key_env_var": null,
+      "docs_url": "https://authenticjobs.com/",
+      "endpoints": [
+        {
+          "path": "/api/?api_key=&method=aj.jobs.search&keywords={keywords}&format=json",
+          "method": "GET",
+          "desc": "Search design and development jobs by keyword",
+          "example": "curl 'https://authenticjobs.com/api/?method=aj.jobs.search&keywords=frontend&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "Dribbble Jobs",
+      "base_url": "https://dribbble.com/jobs",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public design job listings",
+      "key_env_var": null,
+      "docs_url": "https://dribbble.com/jobs",
+      "endpoints": [
+        {
+          "path": "?location=anywhere&remote=true",
+          "method": "GET",
+          "desc": "Browse remote design job listings on Dribbble (HTML, parse with scraper)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://dribbble.com/jobs?location=anywhere&remote=true'"
+        }
+      ]
+    },
+    {
+      "name": "Landing.jobs",
+      "base_url": "https://landing.jobs/api/v1",
+      "auth": "apiKey",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier for job search and company data in European tech market",
+      "key_env_var": "LANDING_JOBS_API_KEY",
+      "docs_url": "https://landing.jobs/developers",
+      "endpoints": [
+        {
+          "path": "/offers?page=1&per_page=20",
+          "method": "GET",
+          "desc": "List tech job offers in Europe with pagination",
+          "example": "curl 'https://landing.jobs/api/v1/offers?page=1&per_page=20' -H 'Authorization: Token $LANDING_JOBS_API_KEY'"
+        },
+        {
+          "path": "/offers?tags=python,remote&page=1",
+          "method": "GET",
+          "desc": "Filter job offers by tags like language or remote",
+          "example": "curl 'https://landing.jobs/api/v1/offers?tags=python,remote&page=1' -H 'Authorization: Token $LANDING_JOBS_API_KEY'"
+        }
+      ]
     }
   ]
 }

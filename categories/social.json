@@ -159,6 +159,348 @@
       ]
     },
     {
+      "name": "Stack Exchange API",
+      "base_url": "https://api.stackexchange.com/2.3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for basic (300 requests/day), free key gets 10,000/day",
+      "key_env_var": null,
+      "docs_url": "https://api.stackexchange.com/docs",
+      "endpoints": [
+        {
+          "path": "/questions?order=desc&sort=votes&tagged={tag}&site=stackoverflow&pagesize=10",
+          "method": "GET",
+          "desc": "Top voted questions by tag on Stack Overflow",
+          "example": "curl 'https://api.stackexchange.com/2.3/questions?order=desc&sort=votes&tagged=python&site=stackoverflow&pagesize=10'"
+        },
+        {
+          "path": "/search/advanced?order=desc&sort=relevance&q={query}&site=stackoverflow&pagesize=10",
+          "method": "GET",
+          "desc": "Advanced search across Stack Overflow questions",
+          "example": "curl 'https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=relevance&q=nextjs+server+actions&site=stackoverflow&pagesize=10'"
+        },
+        {
+          "path": "/questions/{ids}/answers?order=desc&sort=votes&site=stackoverflow",
+          "method": "GET",
+          "desc": "Get answers for a specific question by ID",
+          "example": "curl 'https://api.stackexchange.com/2.3/questions/12345678/answers?order=desc&sort=votes&site=stackoverflow'"
+        }
+      ]
+    },
+    {
+      "name": "Lobsters",
+      "base_url": "https://lobste.rs",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, append .json to any URL, be polite with rate",
+      "key_env_var": null,
+      "docs_url": "https://lobste.rs/about",
+      "endpoints": [
+        {
+          "path": "/hottest.json",
+          "method": "GET",
+          "desc": "Current hottest stories on Lobsters",
+          "example": "curl 'https://lobste.rs/hottest.json'"
+        },
+        {
+          "path": "/newest.json",
+          "method": "GET",
+          "desc": "Newest stories submitted to Lobsters",
+          "example": "curl 'https://lobste.rs/newest.json'"
+        },
+        {
+          "path": "/t/{tag}.json",
+          "method": "GET",
+          "desc": "Stories filtered by tag (e.g., rust, security, ai)",
+          "example": "curl 'https://lobste.rs/t/rust.json'"
+        }
+      ]
+    },
+    {
+      "name": "Discourse API",
+      "base_url": "https://{discourse-instance}",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public forum endpoints, varies by instance",
+      "key_env_var": null,
+      "docs_url": "https://docs.discourse.org/",
+      "endpoints": [
+        {
+          "path": "/latest.json",
+          "method": "GET",
+          "desc": "Latest topics on a Discourse forum",
+          "example": "curl 'https://meta.discourse.org/latest.json'"
+        },
+        {
+          "path": "/top.json?period=weekly",
+          "method": "GET",
+          "desc": "Top topics by period (daily, weekly, monthly, yearly, all)",
+          "example": "curl 'https://meta.discourse.org/top.json?period=weekly'"
+        },
+        {
+          "path": "/search.json?q={query}",
+          "method": "GET",
+          "desc": "Search topics and posts on a Discourse forum",
+          "example": "curl 'https://meta.discourse.org/search.json?q=plugin+development'"
+        }
+      ]
+    },
+    {
+      "name": "Fediverse / ActivityPub",
+      "base_url": "https://{instance}",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public ActivityPub endpoints, works across Mastodon/Pleroma/Misskey instances",
+      "key_env_var": null,
+      "docs_url": "https://www.w3.org/TR/activitypub/",
+      "endpoints": [
+        {
+          "path": "/api/v1/directory?limit=20&order=active",
+          "method": "GET",
+          "desc": "Public user directory sorted by activity (Mastodon instances)",
+          "example": "curl 'https://mastodon.social/api/v1/directory?limit=20&order=active'"
+        },
+        {
+          "path": "/api/v1/instance",
+          "method": "GET",
+          "desc": "Instance metadata including stats, rules, and description",
+          "example": "curl 'https://mastodon.social/api/v1/instance'"
+        },
+        {
+          "path": "/api/v1/trends/tags?limit=10",
+          "method": "GET",
+          "desc": "Currently trending hashtags on the instance",
+          "example": "curl 'https://mastodon.social/api/v1/trends/tags?limit=10'"
+        }
+      ]
+    },
+    {
+      "name": "Wikipedia API (MediaWiki)",
+      "base_url": "https://en.wikipedia.org/w",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, polite User-Agent requested, no hard rate limit",
+      "key_env_var": null,
+      "docs_url": "https://www.mediawiki.org/wiki/API:Main_page",
+      "endpoints": [
+        {
+          "path": "/api.php?action=query&titles={title}&prop=extracts&exintro&explaintext&format=json",
+          "method": "GET",
+          "desc": "Get the introduction/summary of a Wikipedia article",
+          "example": "curl 'https://en.wikipedia.org/w/api.php?action=query&titles=Artificial_intelligence&prop=extracts&exintro&explaintext&format=json'"
+        },
+        {
+          "path": "/api.php?action=opensearch&search={query}&limit=10&format=json",
+          "method": "GET",
+          "desc": "Search Wikipedia article titles with suggestions",
+          "example": "curl 'https://en.wikipedia.org/w/api.php?action=opensearch&search=machine+learning&limit=10&format=json'"
+        },
+        {
+          "path": "/api.php?action=query&list=search&srsearch={query}&srlimit=10&format=json",
+          "method": "GET",
+          "desc": "Full-text search across Wikipedia articles",
+          "example": "curl 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=large+language+models&srlimit=10&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "Wikidata SPARQL",
+      "base_url": "https://query.wikidata.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, User-Agent required, reasonable rate limiting",
+      "key_env_var": null,
+      "docs_url": "https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service",
+      "endpoints": [
+        {
+          "path": "/sparql?query={sparql_query}&format=json",
+          "method": "GET",
+          "desc": "Execute SPARQL queries against the Wikidata knowledge graph",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://query.wikidata.org/sparql?query=SELECT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ5%20.%20%3Fitem%20wdt%3AP106%20wd%3AQ82594%20.%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%20%7D%20LIMIT%2010&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "Archive.org (Internet Archive)",
+      "base_url": "https://archive.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, rate limited to reasonable usage",
+      "key_env_var": null,
+      "docs_url": "https://archive.org/developers/",
+      "endpoints": [
+        {
+          "path": "/advancedsearch.php?q={query}&output=json&rows=10",
+          "method": "GET",
+          "desc": "Search the Internet Archive catalog for books, media, etc.",
+          "example": "curl 'https://archive.org/advancedsearch.php?q=artificial+intelligence&output=json&rows=10'"
+        },
+        {
+          "path": "/metadata/{identifier}",
+          "method": "GET",
+          "desc": "Get full metadata for a specific archive item",
+          "example": "curl 'https://archive.org/metadata/principia_mathematica'"
+        },
+        {
+          "path": "/wayback/available?url={url}&timestamp={timestamp}",
+          "method": "GET",
+          "desc": "Check Wayback Machine availability for a URL",
+          "example": "curl 'https://archive.org/wayback/available?url=example.com&timestamp=20250101'"
+        }
+      ]
+    },
+    {
+      "name": "Open Library",
+      "base_url": "https://openlibrary.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits (be polite)",
+      "key_env_var": null,
+      "docs_url": "https://openlibrary.org/developers/api",
+      "endpoints": [
+        {
+          "path": "/search.json?q={query}&limit=10",
+          "method": "GET",
+          "desc": "Search for books by title, author, or keyword",
+          "example": "curl 'https://openlibrary.org/search.json?q=artificial+intelligence&limit=10'"
+        },
+        {
+          "path": "/works/{olid}.json",
+          "method": "GET",
+          "desc": "Get details for a specific book work by Open Library ID",
+          "example": "curl 'https://openlibrary.org/works/OL45883W.json'"
+        },
+        {
+          "path": "/api/books?bibkeys=ISBN:{isbn}&jscmd=details&format=json",
+          "method": "GET",
+          "desc": "Look up a book by ISBN",
+          "example": "curl 'https://openlibrary.org/api/books?bibkeys=ISBN:0596007124&jscmd=details&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "MusicBrainz",
+      "base_url": "https://musicbrainz.org/ws/2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 1 request/second, User-Agent required",
+      "key_env_var": null,
+      "docs_url": "https://musicbrainz.org/doc/MusicBrainz_API",
+      "endpoints": [
+        {
+          "path": "/artist/?query={query}&fmt=json&limit=10",
+          "method": "GET",
+          "desc": "Search for music artists by name",
+          "example": "curl -H 'User-Agent: api-catalog/1.0 (admin@example.com)' 'https://musicbrainz.org/ws/2/artist/?query=radiohead&fmt=json&limit=10'"
+        },
+        {
+          "path": "/release/?query=artist:{artist}+AND+release:{album}&fmt=json",
+          "method": "GET",
+          "desc": "Search for album releases by artist and title",
+          "example": "curl -H 'User-Agent: api-catalog/1.0 (admin@example.com)' 'https://musicbrainz.org/ws/2/release/?query=artist:radiohead+AND+release:ok+computer&fmt=json'"
+        }
+      ]
+    },
+    {
+      "name": "Board Game Geek (BGG) API",
+      "base_url": "https://boardgamegeek.com/xmlapi2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, XML responses, reasonable rate limits",
+      "key_env_var": null,
+      "docs_url": "https://boardgamegeek.com/wiki/page/BGG_XML_API2",
+      "endpoints": [
+        {
+          "path": "/search?query={query}&type=boardgame",
+          "method": "GET",
+          "desc": "Search for board games by name (XML response)",
+          "example": "curl 'https://boardgamegeek.com/xmlapi2/search?query=catan&type=boardgame'"
+        },
+        {
+          "path": "/thing?id={id}&stats=1",
+          "method": "GET",
+          "desc": "Get detailed game info with ratings and stats",
+          "example": "curl 'https://boardgamegeek.com/xmlapi2/thing?id=13&stats=1'"
+        },
+        {
+          "path": "/hot?type=boardgame",
+          "method": "GET",
+          "desc": "Currently hottest board games on BGG",
+          "example": "curl 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame'"
+        }
+      ]
+    },
+    {
+      "name": "Jikan (MyAnimeList Unofficial)",
+      "base_url": "https://api.jikan.moe/v4",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 3 requests/second, 60 requests/minute",
+      "key_env_var": null,
+      "docs_url": "https://docs.api.jikan.moe/",
+      "endpoints": [
+        {
+          "path": "/anime?q={query}&limit=10",
+          "method": "GET",
+          "desc": "Search anime by title",
+          "example": "curl 'https://api.jikan.moe/v4/anime?q=attack+on+titan&limit=10'"
+        },
+        {
+          "path": "/top/anime?filter=airing&limit=10",
+          "method": "GET",
+          "desc": "Get top-rated currently airing anime",
+          "example": "curl 'https://api.jikan.moe/v4/top/anime?filter=airing&limit=10'"
+        },
+        {
+          "path": "/anime/{id}/full",
+          "method": "GET",
+          "desc": "Get full anime details by MyAnimeList ID",
+          "example": "curl 'https://api.jikan.moe/v4/anime/16498/full'"
+        }
+      ]
+    },
+    {
+      "name": "RAWG (Video Games Database)",
+      "base_url": "https://api.rawg.io/api",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "Free tier with API key, 20,000 requests/month",
+      "key_env_var": "RAWG_API_KEY",
+      "docs_url": "https://rawg.io/apidocs",
+      "endpoints": [
+        {
+          "path": "/games?key={key}&search={query}&page_size=10",
+          "method": "GET",
+          "desc": "Search video games by name",
+          "example": "curl 'https://api.rawg.io/api/games?key=$RAWG_API_KEY&search=elden+ring&page_size=10'"
+        },
+        {
+          "path": "/games?key={key}&ordering=-rating&page_size=10",
+          "method": "GET",
+          "desc": "Get top-rated video games",
+          "example": "curl 'https://api.rawg.io/api/games?key=$RAWG_API_KEY&ordering=-rating&page_size=10'"
+        },
+        {
+          "path": "/games/{id}?key={key}",
+          "method": "GET",
+          "desc": "Get detailed info for a specific game by RAWG ID",
+          "example": "curl 'https://api.rawg.io/api/games/3498?key=$RAWG_API_KEY'"
+        }
+      ]
+    },
+    {
       "name": "Lemmy API",
       "base_url": "https://lemmy.ml/api/v3",
       "auth": "none",

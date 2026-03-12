@@ -193,6 +193,516 @@
           "example": "curl 'https://libraries.io/api/github/vercel/next.js/dependencies?api_key=$LIBRARIES_IO_API_KEY'"
         }
       ]
+    },
+    {
+      "name": "Postman Echo",
+      "base_url": "https://postman-echo.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, testing and debugging HTTP requests",
+      "key_env_var": null,
+      "docs_url": "https://learning.postman.com/docs/developer/echo-api/",
+      "endpoints": [
+        {
+          "path": "/get?foo=bar",
+          "method": "GET",
+          "desc": "Echo back GET request parameters, headers, and URL",
+          "example": "curl 'https://postman-echo.com/get?foo=bar&baz=qux'"
+        },
+        {
+          "path": "/post",
+          "method": "POST",
+          "desc": "Echo back POST body, headers, and request details",
+          "example": "curl -X POST 'https://postman-echo.com/post' -H 'Content-Type: application/json' -d '{\"key\":\"value\"}'"
+        },
+        {
+          "path": "/headers",
+          "method": "GET",
+          "desc": "Echo back all request headers",
+          "example": "curl 'https://postman-echo.com/headers' -H 'X-Custom: test'"
+        }
+      ]
+    },
+    {
+      "name": "HTTPBin",
+      "base_url": "https://httpbin.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, HTTP request and response testing service",
+      "key_env_var": null,
+      "docs_url": "https://httpbin.org/",
+      "endpoints": [
+        {
+          "path": "/get",
+          "method": "GET",
+          "desc": "Returns GET request data including headers, args, and origin IP",
+          "example": "curl 'https://httpbin.org/get'"
+        },
+        {
+          "path": "/post",
+          "method": "POST",
+          "desc": "Returns POST data including body, form, and files",
+          "example": "curl -X POST 'https://httpbin.org/post' -d 'key=value'"
+        },
+        {
+          "path": "/status/{code}",
+          "method": "GET",
+          "desc": "Return a specific HTTP status code for testing",
+          "example": "curl -o /dev/null -w '%{http_code}' 'https://httpbin.org/status/418'"
+        },
+        {
+          "path": "/delay/{seconds}",
+          "method": "GET",
+          "desc": "Delay response by N seconds (max 10) for timeout testing",
+          "example": "curl 'https://httpbin.org/delay/3'"
+        }
+      ]
+    },
+    {
+      "name": "JSONPlaceholder",
+      "base_url": "https://jsonplaceholder.typicode.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, fake REST API for testing and prototyping",
+      "key_env_var": null,
+      "docs_url": "https://jsonplaceholder.typicode.com/guide/",
+      "endpoints": [
+        {
+          "path": "/posts",
+          "method": "GET",
+          "desc": "List 100 fake blog posts with userId, title, and body",
+          "example": "curl 'https://jsonplaceholder.typicode.com/posts'"
+        },
+        {
+          "path": "/posts/{id}",
+          "method": "GET",
+          "desc": "Get a single fake post by ID",
+          "example": "curl 'https://jsonplaceholder.typicode.com/posts/1'"
+        },
+        {
+          "path": "/users",
+          "method": "GET",
+          "desc": "List 10 fake users with names, emails, and addresses",
+          "example": "curl 'https://jsonplaceholder.typicode.com/users'"
+        },
+        {
+          "path": "/posts",
+          "method": "POST",
+          "desc": "Create a fake post (simulated, returns created object with ID)",
+          "example": "curl -X POST 'https://jsonplaceholder.typicode.com/posts' -H 'Content-Type: application/json' -d '{\"title\":\"Test\",\"body\":\"Content\",\"userId\":1}'"
+        }
+      ]
+    },
+    {
+      "name": "ReqRes",
+      "base_url": "https://reqres.in/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, fake user API for frontend testing",
+      "key_env_var": null,
+      "docs_url": "https://reqres.in/",
+      "endpoints": [
+        {
+          "path": "/users?page=1",
+          "method": "GET",
+          "desc": "List paginated fake users with avatars",
+          "example": "curl 'https://reqres.in/api/users?page=1'"
+        },
+        {
+          "path": "/users/{id}",
+          "method": "GET",
+          "desc": "Get a single fake user by ID",
+          "example": "curl 'https://reqres.in/api/users/2'"
+        },
+        {
+          "path": "/register",
+          "method": "POST",
+          "desc": "Simulate user registration (returns token)",
+          "example": "curl -X POST 'https://reqres.in/api/register' -H 'Content-Type: application/json' -d '{\"email\":\"eve.holt@reqres.in\",\"password\":\"pistol\"}'"
+        }
+      ]
+    },
+    {
+      "name": "Shields.io",
+      "base_url": "https://img.shields.io",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generates SVG/PNG badges for repos and services",
+      "key_env_var": null,
+      "docs_url": "https://shields.io/",
+      "endpoints": [
+        {
+          "path": "/badge/{label}-{message}-{color}",
+          "method": "GET",
+          "desc": "Generate a static badge with custom label, message, and color",
+          "example": "curl 'https://img.shields.io/badge/build-passing-brightgreen' -o badge.svg"
+        },
+        {
+          "path": "/github/stars/{owner}/{repo}",
+          "method": "GET",
+          "desc": "Dynamic badge showing GitHub star count",
+          "example": "curl 'https://img.shields.io/github/stars/vercel/next.js' -o stars.svg"
+        },
+        {
+          "path": "/npm/v/{package}",
+          "method": "GET",
+          "desc": "Dynamic badge showing latest npm package version",
+          "example": "curl 'https://img.shields.io/npm/v/express' -o version.svg"
+        }
+      ]
+    },
+    {
+      "name": "Carbon (Code Screenshots)",
+      "base_url": "https://carbon.now.sh/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generate beautiful code screenshots",
+      "key_env_var": null,
+      "docs_url": "https://github.com/carbon-app/carbon",
+      "endpoints": [
+        {
+          "path": "/cook",
+          "method": "POST",
+          "desc": "Generate a code screenshot image with custom theme and language",
+          "example": "curl -X POST 'https://carbon.now.sh/api/cook' -H 'Content-Type: application/json' -d '{\"code\":\"console.log(\\\"hello\\\")\",\"language\":\"javascript\",\"theme\":\"dracula\"}'"
+        }
+      ]
+    },
+    {
+      "name": "Ray.so (Code Screenshots)",
+      "base_url": "https://ray.so/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, beautiful code screenshot generator by Raycast",
+      "key_env_var": null,
+      "docs_url": "https://ray.so/",
+      "endpoints": [
+        {
+          "path": "/generate?title={title}&theme=midnight&padding=32&language=python",
+          "method": "POST",
+          "desc": "Generate a styled code screenshot image",
+          "example": "curl -X POST 'https://ray.so/api/generate?title=example&theme=midnight&padding=32&language=python' -d 'print(\"hello world\")'"
+        }
+      ]
+    },
+    {
+      "name": "DevDocs.io",
+      "base_url": "https://devdocs.io",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, unified documentation search for 400+ languages and frameworks",
+      "key_env_var": null,
+      "docs_url": "https://devdocs.io/about",
+      "endpoints": [
+        {
+          "path": "/docs/{doc}/index.json",
+          "method": "GET",
+          "desc": "Get the documentation index for a specific language or framework",
+          "example": "curl 'https://devdocs.io/docs/python~3.12/index.json'"
+        },
+        {
+          "path": "/docs.json",
+          "method": "GET",
+          "desc": "List all available documentation sets",
+          "example": "curl 'https://devdocs.io/docs.json'"
+        }
+      ]
+    },
+    {
+      "name": "StackExchange API",
+      "base_url": "https://api.stackexchange.com/2.3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for basic (300 requests/day), API key for 10,000/day",
+      "key_env_var": null,
+      "docs_url": "https://api.stackexchange.com/docs",
+      "endpoints": [
+        {
+          "path": "/search/advanced?order=desc&sort=votes&q={query}&site=stackoverflow",
+          "method": "GET",
+          "desc": "Search Stack Overflow questions by keyword, sorted by votes",
+          "example": "curl 'https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=votes&q=python+async&site=stackoverflow'"
+        },
+        {
+          "path": "/questions/{ids}?site=stackoverflow&filter=withbody",
+          "method": "GET",
+          "desc": "Get question details with body by question ID",
+          "example": "curl 'https://api.stackexchange.com/2.3/questions/11227809?site=stackoverflow&filter=withbody'"
+        },
+        {
+          "path": "/questions/{id}/answers?order=desc&sort=votes&site=stackoverflow&filter=withbody",
+          "method": "GET",
+          "desc": "Get answers for a question, sorted by votes",
+          "example": "curl 'https://api.stackexchange.com/2.3/questions/11227809/answers?order=desc&sort=votes&site=stackoverflow&filter=withbody'"
+        }
+      ]
+    },
+    {
+      "name": "Snyk",
+      "base_url": "https://api.snyk.io/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier for open source projects, 200 tests/month",
+      "key_env_var": "SNYK_TOKEN",
+      "docs_url": "https://snyk.docs.apiary.io/",
+      "endpoints": [
+        {
+          "path": "/test/npm/{package}/{version}",
+          "method": "GET",
+          "desc": "Test an npm package version for known vulnerabilities",
+          "example": "curl 'https://api.snyk.io/v1/test/npm/lodash/4.17.20' -H 'Authorization: token $SNYK_TOKEN'"
+        },
+        {
+          "path": "/test/pip/{package}/{version}",
+          "method": "GET",
+          "desc": "Test a Python package for known vulnerabilities",
+          "example": "curl 'https://api.snyk.io/v1/test/pip/requests/2.28.0' -H 'Authorization: token $SNYK_TOKEN'"
+        }
+      ]
+    },
+    {
+      "name": "OSV.dev",
+      "base_url": "https://api.osv.dev/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, open source vulnerability database by Google",
+      "key_env_var": null,
+      "docs_url": "https://osv.dev/docs/",
+      "endpoints": [
+        {
+          "path": "/query",
+          "method": "POST",
+          "desc": "Query vulnerabilities by package name and version",
+          "example": "curl -X POST 'https://api.osv.dev/v1/query' -H 'Content-Type: application/json' -d '{\"package\":{\"name\":\"lodash\",\"ecosystem\":\"npm\"},\"version\":\"4.17.20\"}'"
+        },
+        {
+          "path": "/vulns/{vuln_id}",
+          "method": "GET",
+          "desc": "Get vulnerability details by OSV ID",
+          "example": "curl 'https://api.osv.dev/v1/vulns/GHSA-jf85-cpcp-j695'"
+        }
+      ]
+    },
+    {
+      "name": "Wayback Machine API",
+      "base_url": "https://archive.org/wayback",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, access Internet Archive's web archive",
+      "key_env_var": null,
+      "docs_url": "https://archive.org/help/wayback_api.php",
+      "endpoints": [
+        {
+          "path": "/available?url={url}&timestamp={yyyymmdd}",
+          "method": "GET",
+          "desc": "Check if a URL has been archived and get the closest snapshot",
+          "example": "curl 'https://archive.org/wayback/available?url=example.com&timestamp=20200101'"
+        }
+      ]
+    },
+    {
+      "name": "W3C Validator",
+      "base_url": "https://validator.w3.org/nu",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, validate HTML/CSS against W3C standards",
+      "key_env_var": null,
+      "docs_url": "https://validator.w3.org/docs/api.html",
+      "endpoints": [
+        {
+          "path": "/?doc={url}&out=json",
+          "method": "GET",
+          "desc": "Validate a webpage by URL and return errors/warnings as JSON",
+          "example": "curl 'https://validator.w3.org/nu/?doc=https://example.com&out=json'"
+        },
+        {
+          "path": "/?out=json",
+          "method": "POST",
+          "desc": "Validate HTML content directly by posting HTML body",
+          "example": "curl -X POST 'https://validator.w3.org/nu/?out=json' -H 'Content-Type: text/html' -d '<!DOCTYPE html><html><head><title>Test</title></head><body></body></html>'"
+        }
+      ]
+    },
+    {
+      "name": "SSL Labs API",
+      "base_url": "https://api.ssllabs.com/api/v3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, free SSL/TLS server testing and grading",
+      "key_env_var": null,
+      "docs_url": "https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md",
+      "endpoints": [
+        {
+          "path": "/analyze?host={domain}&publish=off&startNew=on",
+          "method": "GET",
+          "desc": "Start an SSL test for a domain and get grade results",
+          "example": "curl 'https://api.ssllabs.com/api/v3/analyze?host=example.com&publish=off&startNew=on'"
+        },
+        {
+          "path": "/info",
+          "method": "GET",
+          "desc": "Check API availability and current assessment limits",
+          "example": "curl 'https://api.ssllabs.com/api/v3/info'"
+        }
+      ]
+    },
+    {
+      "name": "CleanURI",
+      "base_url": "https://cleanuri.com/api/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, free URL shortener service",
+      "key_env_var": null,
+      "docs_url": "https://cleanuri.com/docs",
+      "endpoints": [
+        {
+          "path": "/shorten",
+          "method": "POST",
+          "desc": "Shorten a URL",
+          "example": "curl -X POST 'https://cleanuri.com/api/v1/shorten' -d 'url=https://example.com/very/long/path/here'"
+        }
+      ]
+    },
+    {
+      "name": "QR Code Generator (goqr.me)",
+      "base_url": "https://api.qrserver.com/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generate and read QR codes",
+      "key_env_var": null,
+      "docs_url": "https://goqr.me/api/",
+      "endpoints": [
+        {
+          "path": "/create-qr-code/?size=300x300&data={text}",
+          "method": "GET",
+          "desc": "Generate a QR code image from text or URL",
+          "example": "curl 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://example.com' -o qrcode.png"
+        },
+        {
+          "path": "/read-qr-code/?fileurl={image_url}",
+          "method": "GET",
+          "desc": "Read and decode a QR code from an image URL",
+          "example": "curl 'https://api.qrserver.com/v1/read-qr-code/?fileurl=https://example.com/qr.png'"
+        }
+      ]
+    },
+    {
+      "name": "Plausible Analytics",
+      "base_url": "https://plausible.io/api/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free for self-hosted, cloud free tier for small sites",
+      "key_env_var": "PLAUSIBLE_API_KEY",
+      "docs_url": "https://plausible.io/docs/stats-api",
+      "endpoints": [
+        {
+          "path": "/stats/aggregate?site_id={domain}&period=30d&metrics=visitors,pageviews,bounce_rate",
+          "method": "GET",
+          "desc": "Get aggregate stats for a site over a time period",
+          "example": "curl 'https://plausible.io/api/v1/stats/aggregate?site_id=example.com&period=30d&metrics=visitors,pageviews,bounce_rate' -H 'Authorization: Bearer $PLAUSIBLE_API_KEY'"
+        },
+        {
+          "path": "/stats/breakdown?site_id={domain}&period=30d&property=visit:source",
+          "method": "GET",
+          "desc": "Break down stats by property (source, page, country, etc.)",
+          "example": "curl 'https://plausible.io/api/v1/stats/breakdown?site_id=example.com&period=30d&property=visit:source' -H 'Authorization: Bearer $PLAUSIBLE_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Render API",
+      "base_url": "https://api.render.com/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier for static sites and web services with 750 hours/month",
+      "key_env_var": "RENDER_API_KEY",
+      "docs_url": "https://api-docs.render.com/reference/introduction",
+      "endpoints": [
+        {
+          "path": "/services",
+          "method": "GET",
+          "desc": "List all services in your Render account",
+          "example": "curl 'https://api.render.com/v1/services' -H 'Authorization: Bearer $RENDER_API_KEY'"
+        },
+        {
+          "path": "/services/{serviceId}/deploys",
+          "method": "GET",
+          "desc": "List deploys for a specific service",
+          "example": "curl 'https://api.render.com/v1/services/srv-abc123/deploys' -H 'Authorization: Bearer $RENDER_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Fly.io API",
+      "base_url": "https://api.machines.dev/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier with 3 shared-cpu-1x VMs, 256MB each",
+      "key_env_var": "FLY_API_TOKEN",
+      "docs_url": "https://fly.io/docs/machines/api/",
+      "endpoints": [
+        {
+          "path": "/apps/{app_name}/machines",
+          "method": "GET",
+          "desc": "List all machines for an app",
+          "example": "curl 'https://api.machines.dev/v1/apps/my-app/machines' -H 'Authorization: Bearer $FLY_API_TOKEN'"
+        },
+        {
+          "path": "/apps/{app_name}/machines/{machine_id}",
+          "method": "GET",
+          "desc": "Get details for a specific machine",
+          "example": "curl 'https://api.machines.dev/v1/apps/my-app/machines/abc123' -H 'Authorization: Bearer $FLY_API_TOKEN'"
+        }
+      ]
+    },
+    {
+      "name": "Netlify API",
+      "base_url": "https://api.netlify.com/api/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier with 100GB bandwidth, 300 build minutes/month",
+      "key_env_var": "NETLIFY_AUTH_TOKEN",
+      "docs_url": "https://docs.netlify.com/api/get-started/",
+      "endpoints": [
+        {
+          "path": "/sites",
+          "method": "GET",
+          "desc": "List all sites in your Netlify account",
+          "example": "curl 'https://api.netlify.com/api/v1/sites' -H 'Authorization: Bearer $NETLIFY_AUTH_TOKEN'"
+        },
+        {
+          "path": "/sites/{site_id}/deploys",
+          "method": "GET",
+          "desc": "List all deploys for a specific site",
+          "example": "curl 'https://api.netlify.com/api/v1/sites/my-site-id/deploys' -H 'Authorization: Bearer $NETLIFY_AUTH_TOKEN'"
+        },
+        {
+          "path": "/sites/{site_id}/forms",
+          "method": "GET",
+          "desc": "List form submissions collected by a site",
+          "example": "curl 'https://api.netlify.com/api/v1/sites/my-site-id/forms' -H 'Authorization: Bearer $NETLIFY_AUTH_TOKEN'"
+        }
+      ]
     }
   ]
 }
