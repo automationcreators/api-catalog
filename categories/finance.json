@@ -1,0 +1,180 @@
+{
+  "category": "finance",
+  "description": "Stock market data, cryptocurrency prices, economic indicators, and currency exchange rates",
+  "apis": [
+    {
+      "name": "Alpha Vantage",
+      "base_url": "https://www.alphavantage.co",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "query",
+      "free_tier": "25 requests/day, 5 requests/minute",
+      "key_env_var": "ALPHA_VANTAGE_API_KEY",
+      "docs_url": "https://www.alphavantage.co/documentation/",
+      "endpoints": [
+        {
+          "path": "/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={key}",
+          "method": "GET",
+          "desc": "Get real-time stock quote with price, volume, and change",
+          "example": "curl 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=$ALPHA_VANTAGE_API_KEY'"
+        },
+        {
+          "path": "/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={key}",
+          "method": "GET",
+          "desc": "Daily OHLCV time series for a stock (last 100 days)",
+          "example": "curl 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=$ALPHA_VANTAGE_API_KEY'"
+        },
+        {
+          "path": "/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={key}",
+          "method": "GET",
+          "desc": "Intraday time series at 1, 5, 15, 30, or 60 minute intervals",
+          "example": "curl 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=TSLA&interval=5min&apikey=$ALPHA_VANTAGE_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "CoinGecko",
+      "base_url": "https://api.coingecko.com/api/v3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "10-30 calls/minute, no key required for public endpoints",
+      "key_env_var": null,
+      "docs_url": "https://docs.coingecko.com/reference/introduction",
+      "endpoints": [
+        {
+          "path": "/simple/price?ids={coin_ids}&vs_currencies={currencies}",
+          "method": "GET",
+          "desc": "Current price for one or more coins in specified currencies",
+          "example": "curl 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd'"
+        },
+        {
+          "path": "/coins/{id}/market_chart?vs_currency=usd&days={days}",
+          "method": "GET",
+          "desc": "Historical market data including price, market cap, and volume",
+          "example": "curl 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30'"
+        },
+        {
+          "path": "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1",
+          "method": "GET",
+          "desc": "Top coins by market cap with price, volume, and 24h change",
+          "example": "curl 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1'"
+        }
+      ]
+    },
+    {
+      "name": "Finnhub",
+      "base_url": "https://finnhub.io/api/v1",
+      "auth": "apiKey",
+      "auth_param": "token",
+      "auth_location": "query",
+      "free_tier": "60 API calls/minute",
+      "key_env_var": "FINNHUB_API_KEY",
+      "docs_url": "https://finnhub.io/docs/api",
+      "endpoints": [
+        {
+          "path": "/quote?symbol={symbol}&token={key}",
+          "method": "GET",
+          "desc": "Real-time quote with current, high, low, open, previous close",
+          "example": "curl 'https://finnhub.io/api/v1/quote?symbol=AAPL&token=$FINNHUB_API_KEY'"
+        },
+        {
+          "path": "/stock/candle?symbol={symbol}&resolution=D&from={unix_start}&to={unix_end}&token={key}",
+          "method": "GET",
+          "desc": "Stock candle (OHLCV) data at various resolutions",
+          "example": "curl 'https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&from=1704067200&to=1706745600&token=$FINNHUB_API_KEY'"
+        },
+        {
+          "path": "/company-news?symbol={symbol}&from={date}&to={date}&token={key}",
+          "method": "GET",
+          "desc": "Company news articles within a date range",
+          "example": "curl 'https://finnhub.io/api/v1/company-news?symbol=AAPL&from=2026-03-01&to=2026-03-12&token=$FINNHUB_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "FRED (Federal Reserve Economic Data)",
+      "base_url": "https://api.stlouisfed.org/fred",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "120 requests/minute, unlimited daily",
+      "key_env_var": "FRED_API_KEY",
+      "docs_url": "https://fred.stlouisfed.org/docs/api/fred/",
+      "endpoints": [
+        {
+          "path": "/series/observations?series_id={series_id}&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Get observations/values for an economic data series",
+          "example": "curl 'https://api.stlouisfed.org/fred/series/observations?series_id=GDP&api_key=$FRED_API_KEY&file_type=json'"
+        },
+        {
+          "path": "/series/search?search_text={query}&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Search for economic data series by keyword",
+          "example": "curl 'https://api.stlouisfed.org/fred/series/search?search_text=unemployment+rate&api_key=$FRED_API_KEY&file_type=json'"
+        },
+        {
+          "path": "/series?series_id={series_id}&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Get metadata for a specific series (title, frequency, units)",
+          "example": "curl 'https://api.stlouisfed.org/fred/series?series_id=CPIAUCSL&api_key=$FRED_API_KEY&file_type=json'"
+        }
+      ]
+    },
+    {
+      "name": "ExchangeRate-API",
+      "base_url": "https://open.er-api.com/v6",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for open API, updates daily",
+      "key_env_var": null,
+      "docs_url": "https://www.exchangerate-api.com/docs/free",
+      "endpoints": [
+        {
+          "path": "/latest/{base_currency}",
+          "method": "GET",
+          "desc": "Latest exchange rates for a base currency against all others",
+          "example": "curl 'https://open.er-api.com/v6/latest/USD'"
+        },
+        {
+          "path": "/latest/{base_currency}",
+          "method": "GET",
+          "desc": "Convert between currencies using the rates in the response",
+          "example": "curl 'https://open.er-api.com/v6/latest/EUR'"
+        }
+      ]
+    },
+    {
+      "name": "Twelve Data",
+      "base_url": "https://api.twelvedata.com",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "query",
+      "free_tier": "800 API credits/day, 8 credits/minute",
+      "key_env_var": "TWELVE_DATA_API_KEY",
+      "docs_url": "https://twelvedata.com/docs",
+      "endpoints": [
+        {
+          "path": "/time_series?symbol={symbol}&interval=1day&outputsize=30&apikey={key}",
+          "method": "GET",
+          "desc": "Time series data for stocks, forex, or crypto",
+          "example": "curl 'https://api.twelvedata.com/time_series?symbol=AAPL&interval=1day&outputsize=30&apikey=$TWELVE_DATA_API_KEY'"
+        },
+        {
+          "path": "/price?symbol={symbol}&apikey={key}",
+          "method": "GET",
+          "desc": "Real-time or latest price for a symbol",
+          "example": "curl 'https://api.twelvedata.com/price?symbol=EUR/USD&apikey=$TWELVE_DATA_API_KEY'"
+        },
+        {
+          "path": "/quote?symbol={symbol}&apikey={key}",
+          "method": "GET",
+          "desc": "Detailed quote with 52-week high/low, volume, averages",
+          "example": "curl 'https://api.twelvedata.com/quote?symbol=GOOGL&apikey=$TWELVE_DATA_API_KEY'"
+        }
+      ]
+    }
+  ]
+}

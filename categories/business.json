@@ -1,0 +1,168 @@
+{
+  "category": "business",
+  "description": "Company data, email validation, logo retrieval, and corporate registry lookups",
+  "apis": [
+    {
+      "name": "Hunter.io",
+      "base_url": "https://api.hunter.io/v2",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "25 searches/month, 50 verifications/month",
+      "key_env_var": "HUNTER_API_KEY",
+      "docs_url": "https://hunter.io/api-documentation/v2",
+      "endpoints": [
+        {
+          "path": "/domain-search?domain={domain}&api_key={key}",
+          "method": "GET",
+          "desc": "Find email addresses associated with a company domain",
+          "example": "curl 'https://api.hunter.io/v2/domain-search?domain=stripe.com&api_key=$HUNTER_API_KEY'"
+        },
+        {
+          "path": "/email-verifier?email={email}&api_key={key}",
+          "method": "GET",
+          "desc": "Verify deliverability of a specific email address",
+          "example": "curl 'https://api.hunter.io/v2/email-verifier?email=test@example.com&api_key=$HUNTER_API_KEY'"
+        },
+        {
+          "path": "/email-finder?domain={domain}&first_name={first}&last_name={last}&api_key={key}",
+          "method": "GET",
+          "desc": "Find a specific person's email address at a company",
+          "example": "curl 'https://api.hunter.io/v2/email-finder?domain=google.com&first_name=John&last_name=Smith&api_key=$HUNTER_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Clearbit Logo API",
+      "base_url": "https://logo.clearbit.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, returns company logos as images",
+      "key_env_var": null,
+      "docs_url": "https://clearbit.com/docs#logo-api",
+      "endpoints": [
+        {
+          "path": "/{domain}",
+          "method": "GET",
+          "desc": "Get a company's logo image by domain (returns PNG)",
+          "example": "curl -o logo.png 'https://logo.clearbit.com/stripe.com'"
+        },
+        {
+          "path": "/{domain}?size=200&format=png",
+          "method": "GET",
+          "desc": "Get logo with custom size (default 128px)",
+          "example": "curl -o logo.png 'https://logo.clearbit.com/github.com?size=200&format=png'"
+        }
+      ]
+    },
+    {
+      "name": "Companies House UK",
+      "base_url": "https://api.company-information.service.gov.uk",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for basic search, free API key for full access at 600 requests/5 min",
+      "key_env_var": null,
+      "docs_url": "https://developer-specs.company-information.service.gov.uk/",
+      "endpoints": [
+        {
+          "path": "/search/companies?q={query}",
+          "method": "GET",
+          "desc": "Search UK registered companies by name",
+          "example": "curl 'https://api.company-information.service.gov.uk/search/companies?q=DeepMind'"
+        },
+        {
+          "path": "/company/{company_number}",
+          "method": "GET",
+          "desc": "Get full company profile by company number",
+          "example": "curl 'https://api.company-information.service.gov.uk/company/06388447'"
+        },
+        {
+          "path": "/company/{company_number}/officers",
+          "method": "GET",
+          "desc": "List officers (directors, secretaries) for a company",
+          "example": "curl 'https://api.company-information.service.gov.uk/company/06388447/officers'"
+        }
+      ]
+    },
+    {
+      "name": "Open Corporates",
+      "base_url": "https://api.opencorporates.com/v0.4",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, limited results per page. API key available for higher limits",
+      "key_env_var": null,
+      "docs_url": "https://api.opencorporates.com/documentation/API-Reference",
+      "endpoints": [
+        {
+          "path": "/companies/search?q={query}",
+          "method": "GET",
+          "desc": "Search companies across 140+ jurisdictions worldwide",
+          "example": "curl 'https://api.opencorporates.com/v0.4/companies/search?q=Tesla'"
+        },
+        {
+          "path": "/companies/{jurisdiction_code}/{company_number}",
+          "method": "GET",
+          "desc": "Get company details by jurisdiction and number",
+          "example": "curl 'https://api.opencorporates.com/v0.4/companies/us_ca/C2474131'"
+        },
+        {
+          "path": "/officers/search?q={name}",
+          "method": "GET",
+          "desc": "Search for company officers by name across jurisdictions",
+          "example": "curl 'https://api.opencorporates.com/v0.4/officers/search?q=Elon+Musk'"
+        }
+      ]
+    },
+    {
+      "name": "Abstract API (Email Validation)",
+      "base_url": "https://emailvalidation.abstractapi.com/v1",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "100 requests/month",
+      "key_env_var": "ABSTRACT_EMAIL_API_KEY",
+      "docs_url": "https://docs.abstractapi.com/email-validation",
+      "endpoints": [
+        {
+          "path": "/?api_key={key}&email={email}",
+          "method": "GET",
+          "desc": "Validate email with deliverability, format, MX record, and disposable checks",
+          "example": "curl 'https://emailvalidation.abstractapi.com/v1/?api_key=$ABSTRACT_EMAIL_API_KEY&email=test@example.com'"
+        }
+      ]
+    },
+    {
+      "name": "ZeroBounce",
+      "base_url": "https://api.zerobounce.net/v2",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "100 free validations/month",
+      "key_env_var": "ZEROBOUNCE_API_KEY",
+      "docs_url": "https://www.zerobounce.net/docs/",
+      "endpoints": [
+        {
+          "path": "/validate?api_key={key}&email={email}",
+          "method": "GET",
+          "desc": "Validate a single email address with status and sub-status",
+          "example": "curl 'https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_API_KEY&email=test@example.com'"
+        },
+        {
+          "path": "/getcredits?api_key={key}",
+          "method": "GET",
+          "desc": "Check remaining validation credits on your account",
+          "example": "curl 'https://api.zerobounce.net/v2/getcredits?api_key=$ZEROBOUNCE_API_KEY'"
+        },
+        {
+          "path": "/guessformat?api_key={key}&domain={domain}",
+          "method": "GET",
+          "desc": "Guess the email format used at a specific domain",
+          "example": "curl 'https://api.zerobounce.net/v2/guessformat?api_key=$ZEROBOUNCE_API_KEY&domain=google.com'"
+        }
+      ]
+    }
+  ]
+}

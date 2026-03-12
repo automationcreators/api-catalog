@@ -1,0 +1,174 @@
+{
+  "category": "geo",
+  "description": "Geocoding, reverse geocoding, IP geolocation, and mapping services",
+  "apis": [
+    {
+      "name": "Nominatim (OpenStreetMap)",
+      "base_url": "https://nominatim.openstreetmap.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, max 1 request/second, must include User-Agent",
+      "key_env_var": null,
+      "docs_url": "https://nominatim.org/release-docs/latest/api/Overview/",
+      "endpoints": [
+        {
+          "path": "/search?q={address}&format=json&limit=5",
+          "method": "GET",
+          "desc": "Forward geocode an address or place name to coordinates",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://nominatim.openstreetmap.org/search?q=1600+Pennsylvania+Ave+Washington+DC&format=json&limit=1'"
+        },
+        {
+          "path": "/reverse?lat={lat}&lon={lon}&format=json",
+          "method": "GET",
+          "desc": "Reverse geocode coordinates to an address",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://nominatim.openstreetmap.org/reverse?lat=40.7484&lon=-73.9857&format=json'"
+        },
+        {
+          "path": "/lookup?osm_ids=R{relation_id},N{node_id}&format=json",
+          "method": "GET",
+          "desc": "Look up address details for OSM objects by their IDs",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://nominatim.openstreetmap.org/lookup?osm_ids=R146656,N240109189&format=json'"
+        }
+      ]
+    },
+    {
+      "name": "IP-API",
+      "base_url": "http://ip-api.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 45 requests/minute, HTTP only on free tier",
+      "key_env_var": null,
+      "docs_url": "https://ip-api.com/docs/",
+      "endpoints": [
+        {
+          "path": "/json/{ip}",
+          "method": "GET",
+          "desc": "Geolocation data for a specific IP address",
+          "example": "curl 'http://ip-api.com/json/8.8.8.8'"
+        },
+        {
+          "path": "/json/",
+          "method": "GET",
+          "desc": "Geolocation data for the requesting IP address",
+          "example": "curl 'http://ip-api.com/json/'"
+        },
+        {
+          "path": "/batch",
+          "method": "POST",
+          "desc": "Batch geolocation lookup for up to 100 IPs",
+          "example": "curl -X POST 'http://ip-api.com/batch' -H 'Content-Type: application/json' -d '[\"8.8.8.8\",\"1.1.1.1\"]'"
+        }
+      ]
+    },
+    {
+      "name": "OpenCage Geocoding",
+      "base_url": "https://api.opencagedata.com/geocode/v1",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "2,500 requests/day, 1 request/second",
+      "key_env_var": "OPENCAGE_API_KEY",
+      "docs_url": "https://opencagedata.com/api",
+      "endpoints": [
+        {
+          "path": "/json?q={address}&key={key}",
+          "method": "GET",
+          "desc": "Forward geocode an address to latitude/longitude with confidence score",
+          "example": "curl 'https://api.opencagedata.com/geocode/v1/json?q=Berlin+Germany&key=$OPENCAGE_API_KEY'"
+        },
+        {
+          "path": "/json?q={lat}+{lon}&key={key}",
+          "method": "GET",
+          "desc": "Reverse geocode coordinates to a formatted address",
+          "example": "curl 'https://api.opencagedata.com/geocode/v1/json?q=51.5074+-0.1278&key=$OPENCAGE_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "BigDataCloud",
+      "base_url": "https://api.bigdatacloud.net/data",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for free endpoints, 50,000 requests/month on free tier",
+      "key_env_var": null,
+      "docs_url": "https://www.bigdatacloud.com/docs",
+      "endpoints": [
+        {
+          "path": "/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en",
+          "method": "GET",
+          "desc": "Client-side reverse geocoding with locality information",
+          "example": "curl 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.7749&longitude=-122.4194&localityLanguage=en'"
+        },
+        {
+          "path": "/client-ip",
+          "method": "GET",
+          "desc": "Get the requesting client's IP address",
+          "example": "curl 'https://api.bigdatacloud.net/data/client-ip'"
+        }
+      ]
+    },
+    {
+      "name": "ipinfo.io",
+      "base_url": "https://ipinfo.io",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "50,000 requests/month, basic IP data without token",
+      "key_env_var": "IPINFO_TOKEN",
+      "docs_url": "https://ipinfo.io/developers",
+      "endpoints": [
+        {
+          "path": "/{ip}?token={key}",
+          "method": "GET",
+          "desc": "Full geolocation and org data for an IP address",
+          "example": "curl 'https://ipinfo.io/8.8.8.8?token=$IPINFO_TOKEN'"
+        },
+        {
+          "path": "/{ip}/geo?token={key}",
+          "method": "GET",
+          "desc": "Only geographic data (city, region, country, coordinates)",
+          "example": "curl 'https://ipinfo.io/8.8.8.8/geo?token=$IPINFO_TOKEN'"
+        },
+        {
+          "path": "/json?token={key}",
+          "method": "GET",
+          "desc": "Geolocation for the requesting IP",
+          "example": "curl 'https://ipinfo.io/json?token=$IPINFO_TOKEN'"
+        }
+      ]
+    },
+    {
+      "name": "ipgeolocation.io",
+      "base_url": "https://api.ipgeolocation.io",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "1,000 requests/day, 30,000 requests/month",
+      "key_env_var": "IPGEOLOCATION_API_KEY",
+      "docs_url": "https://ipgeolocation.io/documentation.html",
+      "endpoints": [
+        {
+          "path": "/ipgeo?apiKey={key}&ip={ip}",
+          "method": "GET",
+          "desc": "Full IP geolocation with ISP, currency, and timezone data",
+          "example": "curl 'https://api.ipgeolocation.io/ipgeo?apiKey=$IPGEOLOCATION_API_KEY&ip=8.8.8.8'"
+        },
+        {
+          "path": "/timezone?apiKey={key}&lat={lat}&long={lon}",
+          "method": "GET",
+          "desc": "Timezone information for given coordinates",
+          "example": "curl 'https://api.ipgeolocation.io/timezone?apiKey=$IPGEOLOCATION_API_KEY&lat=40.7128&long=-74.0060'"
+        },
+        {
+          "path": "/astronomy?apiKey={key}&lat={lat}&long={lon}",
+          "method": "GET",
+          "desc": "Sunrise, sunset, moonrise, moonset for coordinates",
+          "example": "curl 'https://api.ipgeolocation.io/astronomy?apiKey=$IPGEOLOCATION_API_KEY&lat=33.4484&long=-112.0740'"
+        }
+      ]
+    }
+  ]
+}

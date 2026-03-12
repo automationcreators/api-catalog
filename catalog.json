@@ -1,0 +1,139 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-03-12",
+  "total_apis": 60,
+  "categories": [
+    {
+      "name": "finance",
+      "file": "categories/finance.json",
+      "api_count": 6,
+      "apis": ["Alpha Vantage", "CoinGecko", "Finnhub", "FRED", "ExchangeRate-API", "Twelve Data"]
+    },
+    {
+      "name": "weather",
+      "file": "categories/weather.json",
+      "api_count": 6,
+      "apis": ["OpenWeatherMap", "Open-Meteo", "Weatherapi.com", "NWS (weather.gov)", "Visual Crossing", "Tomorrow.io"]
+    },
+    {
+      "name": "news",
+      "file": "categories/news.json",
+      "api_count": 6,
+      "apis": ["NewsAPI", "GNews", "Hacker News", "Wikipedia Current Events", "Mediastack", "TheNewsAPI"]
+    },
+    {
+      "name": "geo",
+      "file": "categories/geo.json",
+      "api_count": 6,
+      "apis": ["Nominatim (OpenStreetMap)", "GeoJS", "ip-api", "Zippopotam", "Abstract Geolocation", "Open-Elevation"]
+    },
+    {
+      "name": "government",
+      "file": "categories/government.json",
+      "api_count": 10,
+      "apis": ["FDA (openFDA)", "SEC (EDGAR)", "FEC", "Congress.gov", "Federal Register", "USAspending", "Census Bureau", "NOAA Climate", "NASA (APOD, NEO, Mars Rover)", "EPA (AQS)"]
+    },
+    {
+      "name": "dev-tools",
+      "file": "categories/dev-tools.json",
+      "api_count": 6,
+      "apis": ["GitHub Public API", "HTTPBin", "Public APIs List", "ip-api (Developer)", "DevDocs", "cdnjs"]
+    },
+    {
+      "name": "ai-ml",
+      "file": "categories/ai-ml.json",
+      "api_count": 6,
+      "apis": ["Hugging Face Inference", "LibreTranslate", "Datamuse", "Perspective API", "Wit.ai", "Clarifai (Community)"]
+    },
+    {
+      "name": "social",
+      "file": "categories/social.json",
+      "api_count": 6,
+      "apis": ["Reddit JSON API", "Hacker News (Algolia)", "Wikipedia API", "Wikidata", "Open Library", "MusicBrainz"]
+    },
+    {
+      "name": "business",
+      "file": "categories/business.json",
+      "api_count": 6,
+      "apis": ["Clearbit Logo", "Open Food Facts", "REST Countries", "Universities API", "Charity Navigator", "Open Corporates"]
+    },
+    {
+      "name": "jobs",
+      "file": "categories/jobs.json",
+      "api_count": 6,
+      "apis": ["Adzuna", "Arbeitnow", "Remotive", "The Muse", "Jooble", "Reed.co.uk"]
+    }
+  ],
+  "skills": [
+    {
+      "name": "finance-apis",
+      "path": "skills/finance-apis/SKILL.md",
+      "category": "finance",
+      "slash_command": "/finance-apis",
+      "description": "Stock prices, crypto, forex, economic data"
+    },
+    {
+      "name": "weather-apis",
+      "path": "skills/weather-apis/SKILL.md",
+      "category": "weather",
+      "slash_command": "/weather-apis",
+      "description": "Current weather, forecasts, historical climate"
+    },
+    {
+      "name": "news-apis",
+      "path": "skills/news-apis/SKILL.md",
+      "category": "news",
+      "slash_command": "/news-apis",
+      "description": "Headlines, articles, tech news, current events"
+    },
+    {
+      "name": "geo-apis",
+      "path": "skills/geo-apis/SKILL.md",
+      "category": "geo",
+      "slash_command": "/geo-apis",
+      "description": "Geocoding, IP geolocation, ZIP lookup, elevation"
+    },
+    {
+      "name": "government-apis",
+      "path": "skills/government-apis/SKILL.md",
+      "category": "government",
+      "slash_command": "/government-apis",
+      "description": "FDA, SEC, Congress, NASA, Census, EPA data"
+    },
+    {
+      "name": "dev-tools-apis",
+      "path": "skills/dev-tools-apis/SKILL.md",
+      "category": "dev-tools",
+      "slash_command": "/dev-tools-apis",
+      "description": "GitHub repos, HTTP testing, CDN, documentation"
+    },
+    {
+      "name": "ai-ml-apis",
+      "path": "skills/ai-ml-apis/SKILL.md",
+      "category": "ai-ml",
+      "slash_command": "/ai-ml-apis",
+      "description": "Translation, NLP, language detection, word associations"
+    },
+    {
+      "name": "social-apis",
+      "path": "skills/social-apis/SKILL.md",
+      "category": "social",
+      "slash_command": "/social-apis",
+      "description": "Reddit, Wikipedia, Open Library, music metadata"
+    },
+    {
+      "name": "business-apis",
+      "path": "skills/business-apis/SKILL.md",
+      "category": "business",
+      "slash_command": "/business-apis",
+      "description": "Company logos, food data, countries, universities"
+    },
+    {
+      "name": "jobs-apis",
+      "path": "skills/jobs-apis/SKILL.md",
+      "category": "jobs",
+      "slash_command": "/jobs-apis",
+      "description": "Job listings, remote work, salary data"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "category": "government",
+  "description": "US federal government data including economic indicators, labor statistics, census data, and spending",
+  "apis": [
+    {
+      "name": "FRED (Federal Reserve Economic Data)",
+      "base_url": "https://api.stlouisfed.org/fred",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "120 requests/minute, unlimited daily",
+      "key_env_var": "FRED_API_KEY",
+      "docs_url": "https://fred.stlouisfed.org/docs/api/fred/",
+      "endpoints": [
+        {
+          "path": "/series/observations?series_id={series_id}&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Get economic data observations (GDP, CPI, unemployment, etc.)",
+          "example": "curl 'https://api.stlouisfed.org/fred/series/observations?series_id=UNRATE&api_key=$FRED_API_KEY&file_type=json'"
+        },
+        {
+          "path": "/series/search?search_text={query}&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Search for economic data series by keyword",
+          "example": "curl 'https://api.stlouisfed.org/fred/series/search?search_text=consumer+price+index&api_key=$FRED_API_KEY&file_type=json'"
+        },
+        {
+          "path": "/category/children?category_id=0&api_key={key}&file_type=json",
+          "method": "GET",
+          "desc": "Browse data categories in the FRED hierarchy",
+          "example": "curl 'https://api.stlouisfed.org/fred/category/children?category_id=0&api_key=$FRED_API_KEY&file_type=json'"
+        }
+      ]
+    },
+    {
+      "name": "Bureau of Labor Statistics (BLS)",
+      "base_url": "https://api.bls.gov/publicAPI/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for v2 public, 25 queries/day unregistered, 500/day registered",
+      "key_env_var": null,
+      "docs_url": "https://www.bls.gov/developers/",
+      "endpoints": [
+        {
+          "path": "/timeseries/data/{series_id}",
+          "method": "GET",
+          "desc": "Get time series data (CPI, employment, wages) for last 3 years",
+          "example": "curl 'https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0'"
+        },
+        {
+          "path": "/timeseries/data/",
+          "method": "POST",
+          "desc": "Request multiple series with date range and calculations",
+          "example": "curl -X POST 'https://api.bls.gov/publicAPI/v2/timeseries/data/' -H 'Content-Type: application/json' -d '{\"seriesid\":[\"CUUR0000SA0\",\"SUUR0000SA0\"],\"startyear\":\"2024\",\"endyear\":\"2026\"}'"
+        }
+      ]
+    },
+    {
+      "name": "Census Bureau",
+      "base_url": "https://api.census.gov/data",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "500 requests/day without key, unlimited with free key",
+      "key_env_var": "CENSUS_API_KEY",
+      "docs_url": "https://www.census.gov/data/developers.html",
+      "endpoints": [
+        {
+          "path": "/2020/acs/acs5?get=NAME,B01001_001E&for=state:*&key={key}",
+          "method": "GET",
+          "desc": "American Community Survey 5-year population estimates by state",
+          "example": "curl 'https://api.census.gov/data/2020/acs/acs5?get=NAME,B01001_001E&for=state:*&key=$CENSUS_API_KEY'"
+        },
+        {
+          "path": "/2020/dec/pl?get=NAME,P1_001N&for=county:*&in=state:04&key={key}",
+          "method": "GET",
+          "desc": "Decennial census population counts by county within a state",
+          "example": "curl 'https://api.census.gov/data/2020/dec/pl?get=NAME,P1_001N&for=county:*&in=state:06&key=$CENSUS_API_KEY'"
+        },
+        {
+          "path": "/2020/acs/acs5?get=NAME,B19013_001E&for=zip+code+tabulation+area:*&key={key}",
+          "method": "GET",
+          "desc": "Median household income by ZIP code tabulation area",
+          "example": "curl 'https://api.census.gov/data/2020/acs/acs5?get=NAME,B19013_001E&for=zip+code+tabulation+area:85001&key=$CENSUS_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "USASpending.gov",
+      "base_url": "https://api.usaspending.gov/api/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limits",
+      "key_env_var": null,
+      "docs_url": "https://api.usaspending.gov/docs/",
+      "endpoints": [
+        {
+          "path": "/spending/",
+          "method": "POST",
+          "desc": "Federal spending totals by agency, category, or time period",
+          "example": "curl -X POST 'https://api.usaspending.gov/api/v2/spending/' -H 'Content-Type: application/json' -d '{\"type\":\"agency\",\"filters\":{\"fy\":\"2025\"}}'"
+        },
+        {
+          "path": "/search/spending_by_award/",
+          "method": "POST",
+          "desc": "Search individual awards (contracts, grants) by filters",
+          "example": "curl -X POST 'https://api.usaspending.gov/api/v2/search/spending_by_award/' -H 'Content-Type: application/json' -d '{\"filters\":{\"keywords\":[\"artificial intelligence\"],\"time_period\":[{\"start_date\":\"2025-01-01\",\"end_date\":\"2025-12-31\"}]},\"fields\":[\"Award ID\",\"Recipient Name\",\"Award Amount\"],\"limit\":10}'"
+        },
+        {
+          "path": "/agency/{toptier_code}/",
+          "method": "GET",
+          "desc": "Agency overview including budget and spending data",
+          "example": "curl 'https://api.usaspending.gov/api/v2/agency/012/'"
+        }
+      ]
+    },
+    {
+      "name": "Data.gov (CKAN API)",
+      "base_url": "https://catalog.data.gov/api/3",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "Free API key, generous rate limits",
+      "key_env_var": "DATA_GOV_API_KEY",
+      "docs_url": "https://www.data.gov/developers/apis",
+      "endpoints": [
+        {
+          "path": "/action/package_search?q={query}&rows=10",
+          "method": "GET",
+          "desc": "Search for datasets across all federal agencies",
+          "example": "curl 'https://catalog.data.gov/api/3/action/package_search?q=climate+change&rows=10'"
+        },
+        {
+          "path": "/action/package_show?id={dataset_id}",
+          "method": "GET",
+          "desc": "Get full metadata and download links for a specific dataset",
+          "example": "curl 'https://catalog.data.gov/api/3/action/package_show?id=food-environment-atlas'"
+        },
+        {
+          "path": "/action/tag_list",
+          "method": "GET",
+          "desc": "List all available dataset tags for filtering",
+          "example": "curl 'https://catalog.data.gov/api/3/action/tag_list'"
+        }
+      ]
+    },
+    {
+      "name": "OpenFDA",
+      "base_url": "https://api.fda.gov",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 240 requests/minute per IP, 120,000/day",
+      "key_env_var": null,
+      "docs_url": "https://open.fda.gov/apis/",
+      "endpoints": [
+        {
+          "path": "/drug/event.json?search=patient.drug.openfda.brand_name:{drug}&limit=5",
+          "method": "GET",
+          "desc": "Search adverse event reports for a specific drug",
+          "example": "curl 'https://api.fda.gov/drug/event.json?search=patient.drug.openfda.brand_name:aspirin&limit=5'"
+        },
+        {
+          "path": "/food/recall.json?search=reason_for_recall:{term}&limit=10",
+          "method": "GET",
+          "desc": "Search food recall enforcement reports",
+          "example": "curl 'https://api.fda.gov/food/recall.json?search=reason_for_recall:salmonella&limit=10'"
+        },
+        {
+          "path": "/device/event.json?search=device.generic_name:{device}&limit=5",
+          "method": "GET",
+          "desc": "Medical device adverse event reports",
+          "example": "curl 'https://api.fda.gov/device/event.json?search=device.generic_name:pacemaker&limit=5'"
+        }
+      ]
+    }
+  ]
+}

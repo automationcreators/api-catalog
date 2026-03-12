@@ -1,0 +1,168 @@
+{
+  "category": "jobs",
+  "description": "Job search, remote work listings, and employment data aggregation",
+  "apis": [
+    {
+      "name": "Adzuna",
+      "base_url": "https://api.adzuna.com/v1/api/jobs",
+      "auth": "apiKey",
+      "auth_param": "app_id",
+      "auth_location": "query",
+      "free_tier": "Free developer access, rate limits apply",
+      "key_env_var": "ADZUNA_APP_ID",
+      "docs_url": "https://developer.adzuna.com/docs/search",
+      "endpoints": [
+        {
+          "path": "/{country}/search/1?app_id={app_id}&app_key={app_key}&what={keywords}&where={location}",
+          "method": "GET",
+          "desc": "Search job listings by keyword and location",
+          "example": "curl 'https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=$ADZUNA_APP_ID&app_key=$ADZUNA_APP_KEY&what=python+developer&where=remote'"
+        },
+        {
+          "path": "/{country}/history?app_id={app_id}&app_key={app_key}&months=6&what={keywords}",
+          "method": "GET",
+          "desc": "Historical salary data and trends for a job title",
+          "example": "curl 'https://api.adzuna.com/v1/api/jobs/us/history?app_id=$ADZUNA_APP_ID&app_key=$ADZUNA_APP_KEY&months=6&what=data+scientist'"
+        },
+        {
+          "path": "/{country}/top_companies?app_id={app_id}&app_key={app_key}&what={keywords}",
+          "method": "GET",
+          "desc": "Top hiring companies for a given job category",
+          "example": "curl 'https://api.adzuna.com/v1/api/jobs/us/top_companies?app_id=$ADZUNA_APP_ID&app_key=$ADZUNA_APP_KEY&what=software+engineer'"
+        }
+      ]
+    },
+    {
+      "name": "RemoteOK",
+      "base_url": "https://remoteok.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public JSON feed",
+      "key_env_var": null,
+      "docs_url": "https://remoteok.com/api",
+      "endpoints": [
+        {
+          "path": "/api",
+          "method": "GET",
+          "desc": "All current remote job listings as JSON array",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://remoteok.com/api'"
+        },
+        {
+          "path": "/api?tag={tag}",
+          "method": "GET",
+          "desc": "Filter remote jobs by tag (e.g., python, javascript, devops)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://remoteok.com/api?tag=python'"
+        }
+      ]
+    },
+    {
+      "name": "Arbeitnow",
+      "base_url": "https://www.arbeitnow.com/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public JSON API",
+      "key_env_var": null,
+      "docs_url": "https://documenter.getpostman.com/view/18545278/UVJbJdKh",
+      "endpoints": [
+        {
+          "path": "/job-board-api",
+          "method": "GET",
+          "desc": "List all current job postings with pagination",
+          "example": "curl 'https://www.arbeitnow.com/api/job-board-api'"
+        },
+        {
+          "path": "/job-board-api?page=2",
+          "method": "GET",
+          "desc": "Paginated results of job listings",
+          "example": "curl 'https://www.arbeitnow.com/api/job-board-api?page=2'"
+        }
+      ]
+    },
+    {
+      "name": "JSearch (via RapidAPI)",
+      "base_url": "https://jsearch.p.rapidapi.com",
+      "auth": "apiKey",
+      "auth_param": "X-RapidAPI-Key",
+      "auth_location": "header",
+      "free_tier": "200 requests/month on free tier",
+      "key_env_var": "RAPIDAPI_KEY",
+      "docs_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch",
+      "endpoints": [
+        {
+          "path": "/search?query={query}&page=1&num_pages=1",
+          "method": "GET",
+          "desc": "Search jobs by title, company, or keyword across multiple boards",
+          "example": "curl 'https://jsearch.p.rapidapi.com/search?query=frontend+developer+in+new+york&page=1&num_pages=1' -H 'X-RapidAPI-Key: $RAPIDAPI_KEY' -H 'X-RapidAPI-Host: jsearch.p.rapidapi.com'"
+        },
+        {
+          "path": "/job-details?job_id={job_id}",
+          "method": "GET",
+          "desc": "Get full details for a specific job posting",
+          "example": "curl 'https://jsearch.p.rapidapi.com/job-details?job_id=abc123' -H 'X-RapidAPI-Key: $RAPIDAPI_KEY' -H 'X-RapidAPI-Host: jsearch.p.rapidapi.com'"
+        },
+        {
+          "path": "/estimated-salary?job_title={title}&location={location}&radius=100",
+          "method": "GET",
+          "desc": "Estimated salary range for a job title and location",
+          "example": "curl 'https://jsearch.p.rapidapi.com/estimated-salary?job_title=software+engineer&location=San+Francisco&radius=100' -H 'X-RapidAPI-Key: $RAPIDAPI_KEY' -H 'X-RapidAPI-Host: jsearch.p.rapidapi.com'"
+        }
+      ]
+    },
+    {
+      "name": "Reed.co.uk",
+      "base_url": "https://www.reed.co.uk/api/1.0",
+      "auth": "apiKey",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free API key required, used as Basic Auth username",
+      "key_env_var": "REED_API_KEY",
+      "docs_url": "https://www.reed.co.uk/developers/jobseeker",
+      "endpoints": [
+        {
+          "path": "/search?keywords={keywords}&location={location}&distancefromlocation=10",
+          "method": "GET",
+          "desc": "Search UK job listings by keyword and location",
+          "example": "curl -u '$REED_API_KEY:' 'https://www.reed.co.uk/api/1.0/search?keywords=python+developer&location=london&distancefromlocation=15'"
+        },
+        {
+          "path": "/jobs/{jobId}",
+          "method": "GET",
+          "desc": "Get full details for a specific job listing",
+          "example": "curl -u '$REED_API_KEY:' 'https://www.reed.co.uk/api/1.0/jobs/12345678'"
+        }
+      ]
+    },
+    {
+      "name": "The Muse",
+      "base_url": "https://www.themuse.com/api/public",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public API, paginated results",
+      "key_env_var": null,
+      "docs_url": "https://www.themuse.com/developers/api/v2",
+      "endpoints": [
+        {
+          "path": "/jobs?page=0&descending=true",
+          "method": "GET",
+          "desc": "Browse all job listings with pagination",
+          "example": "curl 'https://www.themuse.com/api/public/jobs?page=0&descending=true'"
+        },
+        {
+          "path": "/jobs?category={category}&level={level}&page=0",
+          "method": "GET",
+          "desc": "Filter jobs by category (Engineering, Data Science, etc.) and level",
+          "example": "curl 'https://www.themuse.com/api/public/jobs?category=Engineering&level=Mid+Level&page=0'"
+        },
+        {
+          "path": "/companies?page=0",
+          "method": "GET",
+          "desc": "Browse company profiles with culture and benefits info",
+          "example": "curl 'https://www.themuse.com/api/public/companies?page=0'"
+        }
+      ]
+    }
+  ]
+}

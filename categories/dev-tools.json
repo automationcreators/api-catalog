@@ -1,0 +1,198 @@
+{
+  "category": "dev-tools",
+  "description": "Developer platforms, package registries, repository data, and open source dependency tracking",
+  "apis": [
+    {
+      "name": "GitHub API",
+      "base_url": "https://api.github.com",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "60 requests/hour unauthenticated, 5,000/hour with token",
+      "key_env_var": "GITHUB_TOKEN",
+      "docs_url": "https://docs.github.com/en/rest",
+      "endpoints": [
+        {
+          "path": "/repos/{owner}/{repo}",
+          "method": "GET",
+          "desc": "Get repository metadata including stars, forks, language, and description",
+          "example": "curl -H 'Authorization: Bearer $GITHUB_TOKEN' 'https://api.github.com/repos/anthropics/claude-code'"
+        },
+        {
+          "path": "/search/repositories?q={query}&sort=stars&order=desc",
+          "method": "GET",
+          "desc": "Search repositories by keyword, language, or topic",
+          "example": "curl -H 'Authorization: Bearer $GITHUB_TOKEN' 'https://api.github.com/search/repositories?q=language:python+topic:machine-learning&sort=stars&order=desc&per_page=10'"
+        },
+        {
+          "path": "/repos/{owner}/{repo}/commits?per_page=10",
+          "method": "GET",
+          "desc": "List recent commits for a repository",
+          "example": "curl -H 'Authorization: Bearer $GITHUB_TOKEN' 'https://api.github.com/repos/vercel/next.js/commits?per_page=5'"
+        },
+        {
+          "path": "/users/{username}",
+          "method": "GET",
+          "desc": "Get public profile information for a user",
+          "example": "curl -H 'Authorization: Bearer $GITHUB_TOKEN' 'https://api.github.com/users/torvalds'"
+        }
+      ]
+    },
+    {
+      "name": "GitLab API",
+      "base_url": "https://gitlab.com/api/v4",
+      "auth": "bearer",
+      "auth_param": "PRIVATE-TOKEN",
+      "auth_location": "header",
+      "free_tier": "10 requests/second authenticated, public endpoints available without token",
+      "key_env_var": "GITLAB_TOKEN",
+      "docs_url": "https://docs.gitlab.com/ee/api/rest/",
+      "endpoints": [
+        {
+          "path": "/projects?search={query}&order_by=stars&sort=desc",
+          "method": "GET",
+          "desc": "Search public projects by keyword",
+          "example": "curl -H 'PRIVATE-TOKEN: $GITLAB_TOKEN' 'https://gitlab.com/api/v4/projects?search=kubernetes&order_by=stars&sort=desc&per_page=10'"
+        },
+        {
+          "path": "/projects/{id}",
+          "method": "GET",
+          "desc": "Get project details by numeric ID or URL-encoded path",
+          "example": "curl -H 'PRIVATE-TOKEN: $GITLAB_TOKEN' 'https://gitlab.com/api/v4/projects/278964'"
+        },
+        {
+          "path": "/projects/{id}/repository/tree?path={path}&ref=main",
+          "method": "GET",
+          "desc": "List repository file tree at a given path and branch",
+          "example": "curl -H 'PRIVATE-TOKEN: $GITLAB_TOKEN' 'https://gitlab.com/api/v4/projects/278964/repository/tree?path=src&ref=main'"
+        }
+      ]
+    },
+    {
+      "name": "npm Registry",
+      "base_url": "https://registry.npmjs.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public registry",
+      "key_env_var": null,
+      "docs_url": "https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md",
+      "endpoints": [
+        {
+          "path": "/{package_name}",
+          "method": "GET",
+          "desc": "Full package metadata including all versions, dependencies, and maintainers",
+          "example": "curl 'https://registry.npmjs.org/express'"
+        },
+        {
+          "path": "/{package_name}/latest",
+          "method": "GET",
+          "desc": "Metadata for the latest published version only",
+          "example": "curl 'https://registry.npmjs.org/react/latest'"
+        },
+        {
+          "path": "/-/v1/search?text={query}&size=10",
+          "method": "GET",
+          "desc": "Search npm packages by keyword with scoring",
+          "example": "curl 'https://registry.npmjs.org/-/v1/search?text=state+management&size=10'"
+        }
+      ]
+    },
+    {
+      "name": "crates.io (Rust Registry)",
+      "base_url": "https://crates.io/api/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, must include User-Agent header",
+      "key_env_var": null,
+      "docs_url": "https://crates.io/policies",
+      "endpoints": [
+        {
+          "path": "/crates/{crate_name}",
+          "method": "GET",
+          "desc": "Get crate metadata including downloads, versions, and description",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://crates.io/api/v1/crates/serde'"
+        },
+        {
+          "path": "/crates?q={query}&sort=downloads&per_page=10",
+          "method": "GET",
+          "desc": "Search Rust crates by keyword",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://crates.io/api/v1/crates?q=async+runtime&sort=downloads&per_page=10'"
+        },
+        {
+          "path": "/crates/{crate_name}/versions",
+          "method": "GET",
+          "desc": "List all published versions of a crate",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://crates.io/api/v1/crates/tokio/versions'"
+        }
+      ]
+    },
+    {
+      "name": "PyPI (Python Package Index)",
+      "base_url": "https://pypi.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, public JSON API",
+      "key_env_var": null,
+      "docs_url": "https://warehouse.pypa.io/api-reference/json.html",
+      "endpoints": [
+        {
+          "path": "/pypi/{package_name}/json",
+          "method": "GET",
+          "desc": "Full package metadata including latest version, description, and download URLs",
+          "example": "curl 'https://pypi.org/pypi/requests/json'"
+        },
+        {
+          "path": "/pypi/{package_name}/{version}/json",
+          "method": "GET",
+          "desc": "Metadata for a specific version of a package",
+          "example": "curl 'https://pypi.org/pypi/flask/3.0.0/json'"
+        },
+        {
+          "path": "/simple/{package_name}/",
+          "method": "GET",
+          "desc": "Simple index listing all available distribution files",
+          "example": "curl -H 'Accept: application/vnd.pypi.simple.v1+json' 'https://pypi.org/simple/numpy/'"
+        }
+      ]
+    },
+    {
+      "name": "Libraries.io",
+      "base_url": "https://libraries.io/api",
+      "auth": "apiKey",
+      "auth_param": "api_key",
+      "auth_location": "query",
+      "free_tier": "60 requests/minute with free API key",
+      "key_env_var": "LIBRARIES_IO_API_KEY",
+      "docs_url": "https://libraries.io/api",
+      "endpoints": [
+        {
+          "path": "/{platform}/{package_name}?api_key={key}",
+          "method": "GET",
+          "desc": "Get package info from any supported platform (npm, pypi, rubygems, etc.)",
+          "example": "curl 'https://libraries.io/api/npm/express?api_key=$LIBRARIES_IO_API_KEY'"
+        },
+        {
+          "path": "/{platform}/{package_name}/dependents?api_key={key}",
+          "method": "GET",
+          "desc": "List packages that depend on this package",
+          "example": "curl 'https://libraries.io/api/npm/lodash/dependents?api_key=$LIBRARIES_IO_API_KEY'"
+        },
+        {
+          "path": "/search?q={query}&platforms={platform}&sort=stars&api_key={key}",
+          "method": "GET",
+          "desc": "Search packages across all platforms with filtering",
+          "example": "curl 'https://libraries.io/api/search?q=http+client&platforms=pypi&sort=stars&api_key=$LIBRARIES_IO_API_KEY'"
+        },
+        {
+          "path": "/github/{owner}/{repo}/dependencies?api_key={key}",
+          "method": "GET",
+          "desc": "List all dependencies for a GitHub repository",
+          "example": "curl 'https://libraries.io/api/github/vercel/next.js/dependencies?api_key=$LIBRARIES_IO_API_KEY'"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "category": "ai-ml",
+  "description": "AI and machine learning inference, image generation, and translation services",
+  "apis": [
+    {
+      "name": "HuggingFace Inference API",
+      "base_url": "https://api-inference.huggingface.co/models",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier with rate limits, serverless inference on popular models",
+      "key_env_var": "HUGGINGFACE_API_KEY",
+      "docs_url": "https://huggingface.co/docs/api-inference/",
+      "endpoints": [
+        {
+          "path": "/{model_id}",
+          "method": "POST",
+          "desc": "Run text generation inference on any hosted model",
+          "example": "curl -X POST 'https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct' -H 'Authorization: Bearer $HUGGINGFACE_API_KEY' -H 'Content-Type: application/json' -d '{\"inputs\":\"What is machine learning?\"}'"
+        },
+        {
+          "path": "/sentence-transformers/all-MiniLM-L6-v2",
+          "method": "POST",
+          "desc": "Generate text embeddings for semantic search",
+          "example": "curl -X POST 'https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2' -H 'Authorization: Bearer $HUGGINGFACE_API_KEY' -H 'Content-Type: application/json' -d '{\"inputs\":\"How to build a web app\"}'"
+        },
+        {
+          "path": "/facebook/bart-large-mnli",
+          "method": "POST",
+          "desc": "Zero-shot text classification without fine-tuning",
+          "example": "curl -X POST 'https://api-inference.huggingface.co/models/facebook/bart-large-mnli' -H 'Authorization: Bearer $HUGGINGFACE_API_KEY' -H 'Content-Type: application/json' -d '{\"inputs\":\"I love this product\",\"parameters\":{\"candidate_labels\":[\"positive\",\"negative\",\"neutral\"]}}'"
+        },
+        {
+          "path": "/openai/whisper-large-v3",
+          "method": "POST",
+          "desc": "Transcribe audio to text using Whisper",
+          "example": "curl -X POST 'https://api-inference.huggingface.co/models/openai/whisper-large-v3' -H 'Authorization: Bearer $HUGGINGFACE_API_KEY' --data-binary '@audio.mp3'"
+        }
+      ]
+    },
+    {
+      "name": "Replicate",
+      "base_url": "https://api.replicate.com/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free credits on signup, pay-per-use after",
+      "key_env_var": "REPLICATE_API_TOKEN",
+      "docs_url": "https://replicate.com/docs/reference/http",
+      "endpoints": [
+        {
+          "path": "/predictions",
+          "method": "POST",
+          "desc": "Run a model prediction (async, returns prediction ID)",
+          "example": "curl -X POST 'https://api.replicate.com/v1/predictions' -H 'Authorization: Bearer $REPLICATE_API_TOKEN' -H 'Content-Type: application/json' -d '{\"version\":\"stability-ai/sdxl:latest\",\"input\":{\"prompt\":\"a photo of an astronaut riding a horse\"}}'"
+        },
+        {
+          "path": "/predictions/{prediction_id}",
+          "method": "GET",
+          "desc": "Check the status and output of a prediction",
+          "example": "curl 'https://api.replicate.com/v1/predictions/abc123' -H 'Authorization: Bearer $REPLICATE_API_TOKEN'"
+        },
+        {
+          "path": "/models/{owner}/{name}",
+          "method": "GET",
+          "desc": "Get metadata about a specific model",
+          "example": "curl 'https://api.replicate.com/v1/models/stability-ai/sdxl' -H 'Authorization: Bearer $REPLICATE_API_TOKEN'"
+        }
+      ]
+    },
+    {
+      "name": "OpenAI",
+      "base_url": "https://api.openai.com/v1",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Free tier credits on signup, pay-as-you-go after",
+      "key_env_var": "OPENAI_API_KEY",
+      "docs_url": "https://platform.openai.com/docs/api-reference",
+      "endpoints": [
+        {
+          "path": "/chat/completions",
+          "method": "POST",
+          "desc": "Generate chat completions with GPT models",
+          "example": "curl -X POST 'https://api.openai.com/v1/chat/completions' -H 'Authorization: Bearer $OPENAI_API_KEY' -H 'Content-Type: application/json' -d '{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"user\",\"content\":\"Hello\"}]}'"
+        },
+        {
+          "path": "/embeddings",
+          "method": "POST",
+          "desc": "Generate text embeddings for search and similarity",
+          "example": "curl -X POST 'https://api.openai.com/v1/embeddings' -H 'Authorization: Bearer $OPENAI_API_KEY' -H 'Content-Type: application/json' -d '{\"model\":\"text-embedding-3-small\",\"input\":\"The quick brown fox\"}'"
+        },
+        {
+          "path": "/models",
+          "method": "GET",
+          "desc": "List all available models",
+          "example": "curl 'https://api.openai.com/v1/models' -H 'Authorization: Bearer $OPENAI_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Stability AI",
+      "base_url": "https://api.stability.ai/v2beta",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "25 free credits on signup",
+      "key_env_var": "STABILITY_API_KEY",
+      "docs_url": "https://platform.stability.ai/docs/api-reference",
+      "endpoints": [
+        {
+          "path": "/stable-image/generate/sd3",
+          "method": "POST",
+          "desc": "Generate images using Stable Diffusion 3",
+          "example": "curl -X POST 'https://api.stability.ai/v2beta/stable-image/generate/sd3' -H 'Authorization: Bearer $STABILITY_API_KEY' -F 'prompt=a beautiful sunset over mountains' -F 'output_format=png'"
+        },
+        {
+          "path": "/stable-image/upscale/conservative",
+          "method": "POST",
+          "desc": "Upscale an image conservatively (preserving details)",
+          "example": "curl -X POST 'https://api.stability.ai/v2beta/stable-image/upscale/conservative' -H 'Authorization: Bearer $STABILITY_API_KEY' -F 'image=@input.png' -F 'output_format=png'"
+        }
+      ]
+    },
+    {
+      "name": "DeepL",
+      "base_url": "https://api-free.deepl.com/v2",
+      "auth": "apiKey",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "500,000 characters/month on free tier",
+      "key_env_var": "DEEPL_API_KEY",
+      "docs_url": "https://developers.deepl.com/docs",
+      "endpoints": [
+        {
+          "path": "/translate",
+          "method": "POST",
+          "desc": "Translate text between 30+ languages",
+          "example": "curl -X POST 'https://api-free.deepl.com/v2/translate' -H 'Authorization: DeepL-Auth-Key $DEEPL_API_KEY' -d 'text=Hello+World&target_lang=DE'"
+        },
+        {
+          "path": "/usage",
+          "method": "GET",
+          "desc": "Check current usage and character limits",
+          "example": "curl 'https://api-free.deepl.com/v2/usage' -H 'Authorization: DeepL-Auth-Key $DEEPL_API_KEY'"
+        },
+        {
+          "path": "/languages?type=target",
+          "method": "GET",
+          "desc": "List supported target languages",
+          "example": "curl 'https://api-free.deepl.com/v2/languages?type=target' -H 'Authorization: DeepL-Auth-Key $DEEPL_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "LibreTranslate",
+      "base_url": "https://libretranslate.com/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required on public instances, rate limited",
+      "key_env_var": null,
+      "docs_url": "https://libretranslate.com/docs/",
+      "endpoints": [
+        {
+          "path": "/translate",
+          "method": "POST",
+          "desc": "Translate text between supported languages",
+          "example": "curl -X POST 'https://libretranslate.com/translate' -H 'Content-Type: application/json' -d '{\"q\":\"Hello\",\"source\":\"en\",\"target\":\"es\"}'"
+        },
+        {
+          "path": "/detect",
+          "method": "POST",
+          "desc": "Detect the language of input text",
+          "example": "curl -X POST 'https://libretranslate.com/detect' -H 'Content-Type: application/json' -d '{\"q\":\"Bonjour le monde\"}'"
+        },
+        {
+          "path": "/languages",
+          "method": "GET",
+          "desc": "List all supported languages and their codes",
+          "example": "curl 'https://libretranslate.com/languages'"
+        }
+      ]
+    }
+  ]
+}

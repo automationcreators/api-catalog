@@ -1,0 +1,180 @@
+{
+  "category": "weather",
+  "description": "Current conditions, forecasts, historical weather data, and severe weather alerts",
+  "apis": [
+    {
+      "name": "OpenWeatherMap",
+      "base_url": "https://api.openweathermap.org/data/2.5",
+      "auth": "apiKey",
+      "auth_param": "appid",
+      "auth_location": "query",
+      "free_tier": "60 calls/minute, 1,000,000 calls/month, current weather and 5-day forecast",
+      "key_env_var": "OPENWEATHERMAP_API_KEY",
+      "docs_url": "https://openweathermap.org/api",
+      "endpoints": [
+        {
+          "path": "/weather?q={city}&units=imperial&appid={key}",
+          "method": "GET",
+          "desc": "Current weather conditions for a city",
+          "example": "curl 'https://api.openweathermap.org/data/2.5/weather?q=Phoenix,AZ,US&units=imperial&appid=$OPENWEATHERMAP_API_KEY'"
+        },
+        {
+          "path": "/forecast?q={city}&units=imperial&appid={key}",
+          "method": "GET",
+          "desc": "5-day / 3-hour forecast for a city",
+          "example": "curl 'https://api.openweathermap.org/data/2.5/forecast?q=New+York&units=imperial&appid=$OPENWEATHERMAP_API_KEY'"
+        },
+        {
+          "path": "/weather?lat={lat}&lon={lon}&units=metric&appid={key}",
+          "method": "GET",
+          "desc": "Current weather by geographic coordinates",
+          "example": "curl 'https://api.openweathermap.org/data/2.5/weather?lat=33.4484&lon=-112.0740&units=imperial&appid=$OPENWEATHERMAP_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Open-Meteo",
+      "base_url": "https://api.open-meteo.com/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 10,000 requests/day for non-commercial use",
+      "key_env_var": null,
+      "docs_url": "https://open-meteo.com/en/docs",
+      "endpoints": [
+        {
+          "path": "/forecast?latitude={lat}&longitude={lon}&current_weather=true",
+          "method": "GET",
+          "desc": "Current weather conditions by coordinates",
+          "example": "curl 'https://api.open-meteo.com/v1/forecast?latitude=33.4484&longitude=-112.0740&current_weather=true'"
+        },
+        {
+          "path": "/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m,precipitation_probability&forecast_days=7",
+          "method": "GET",
+          "desc": "7-day hourly forecast with customizable variables",
+          "example": "curl 'https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&hourly=temperature_2m,precipitation_probability&forecast_days=3&temperature_unit=fahrenheit'"
+        },
+        {
+          "path": "/forecast?latitude={lat}&longitude={lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=auto",
+          "method": "GET",
+          "desc": "Daily aggregated forecast (highs, lows, precipitation)",
+          "example": "curl 'https://api.open-meteo.com/v1/forecast?latitude=51.5074&longitude=-0.1278&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=auto'"
+        }
+      ]
+    },
+    {
+      "name": "WeatherAPI",
+      "base_url": "https://api.weatherapi.com/v1",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "1,000,000 calls/month, current + 3-day forecast + astronomy",
+      "key_env_var": "WEATHERAPI_KEY",
+      "docs_url": "https://www.weatherapi.com/docs/",
+      "endpoints": [
+        {
+          "path": "/current.json?key={key}&q={location}",
+          "method": "GET",
+          "desc": "Current weather for a location (city name, ZIP, coordinates, or IP)",
+          "example": "curl 'https://api.weatherapi.com/v1/current.json?key=$WEATHERAPI_KEY&q=85001'"
+        },
+        {
+          "path": "/forecast.json?key={key}&q={location}&days=3",
+          "method": "GET",
+          "desc": "Weather forecast up to 3 days with hourly breakdown",
+          "example": "curl 'https://api.weatherapi.com/v1/forecast.json?key=$WEATHERAPI_KEY&q=London&days=3'"
+        },
+        {
+          "path": "/astronomy.json?key={key}&q={location}&dt={date}",
+          "method": "GET",
+          "desc": "Sunrise, sunset, moonrise, moonset, and moon phase",
+          "example": "curl 'https://api.weatherapi.com/v1/astronomy.json?key=$WEATHERAPI_KEY&q=Phoenix&dt=2026-03-12'"
+        }
+      ]
+    },
+    {
+      "name": "Visual Crossing",
+      "base_url": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "1,000 records/day, historical and forecast data",
+      "key_env_var": "VISUAL_CROSSING_API_KEY",
+      "docs_url": "https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/",
+      "endpoints": [
+        {
+          "path": "/timeline/{location}?unitGroup=us&key={key}&contentType=json",
+          "method": "GET",
+          "desc": "15-day forecast with current conditions for a location",
+          "example": "curl 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Phoenix,AZ?unitGroup=us&key=$VISUAL_CROSSING_API_KEY&contentType=json'"
+        },
+        {
+          "path": "/timeline/{location}/{start_date}/{end_date}?unitGroup=us&key={key}&contentType=json",
+          "method": "GET",
+          "desc": "Historical weather data for a date range",
+          "example": "curl 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/New+York/2025-01-01/2025-01-31?unitGroup=us&key=$VISUAL_CROSSING_API_KEY&contentType=json'"
+        }
+      ]
+    },
+    {
+      "name": "Tomorrow.io",
+      "base_url": "https://api.tomorrow.io/v4",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "query",
+      "free_tier": "500 calls/day, 25 calls/hour, 3 calls/second",
+      "key_env_var": "TOMORROW_IO_API_KEY",
+      "docs_url": "https://docs.tomorrow.io/reference/welcome",
+      "endpoints": [
+        {
+          "path": "/weather/realtime?location={lat},{lon}&apikey={key}",
+          "method": "GET",
+          "desc": "Real-time weather conditions with extensive data fields",
+          "example": "curl 'https://api.tomorrow.io/v4/weather/realtime?location=33.4484,-112.0740&apikey=$TOMORROW_IO_API_KEY'"
+        },
+        {
+          "path": "/weather/forecast?location={location}&timesteps=1d&apikey={key}",
+          "method": "GET",
+          "desc": "Daily forecast up to 5 days",
+          "example": "curl 'https://api.tomorrow.io/v4/weather/forecast?location=New+York&timesteps=1d&apikey=$TOMORROW_IO_API_KEY'"
+        },
+        {
+          "path": "/weather/forecast?location={lat},{lon}&timesteps=1h&apikey={key}",
+          "method": "GET",
+          "desc": "Hourly forecast up to 120 hours",
+          "example": "curl 'https://api.tomorrow.io/v4/weather/forecast?location=40.7128,-74.0060&timesteps=1h&apikey=$TOMORROW_IO_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "National Weather Service",
+      "base_url": "https://api.weather.gov",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, must include User-Agent header, US locations only",
+      "key_env_var": null,
+      "docs_url": "https://www.weather.gov/documentation/services-web-api",
+      "endpoints": [
+        {
+          "path": "/points/{lat},{lon}",
+          "method": "GET",
+          "desc": "Get metadata and forecast URLs for a lat/lon point",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://api.weather.gov/points/33.4484,-112.0740'"
+        },
+        {
+          "path": "/gridpoints/{office}/{gridX},{gridY}/forecast",
+          "method": "GET",
+          "desc": "7-day forecast for a grid point (get grid from /points endpoint)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://api.weather.gov/gridpoints/PSR/159,61/forecast'"
+        },
+        {
+          "path": "/alerts/active?area={state}",
+          "method": "GET",
+          "desc": "Active weather alerts for a US state",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://api.weather.gov/alerts/active?area=AZ'"
+        }
+      ]
+    }
+  ]
+}

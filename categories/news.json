@@ -1,0 +1,174 @@
+{
+  "category": "news",
+  "description": "News headlines, article search, and content aggregation from global sources",
+  "apis": [
+    {
+      "name": "NewsAPI",
+      "base_url": "https://newsapi.org/v2",
+      "auth": "apiKey",
+      "auth_param": "X-Api-Key",
+      "auth_location": "header",
+      "free_tier": "100 requests/day, headlines only (no content body), 1 month old articles max",
+      "key_env_var": "NEWSAPI_KEY",
+      "docs_url": "https://newsapi.org/docs",
+      "endpoints": [
+        {
+          "path": "/top-headlines?country={country}&category={category}",
+          "method": "GET",
+          "desc": "Top headlines by country and/or category (business, tech, science, etc.)",
+          "example": "curl -H 'X-Api-Key: $NEWSAPI_KEY' 'https://newsapi.org/v2/top-headlines?country=us&category=technology'"
+        },
+        {
+          "path": "/everything?q={query}&sortBy=publishedAt&pageSize=10",
+          "method": "GET",
+          "desc": "Search all articles by keyword with sorting and pagination",
+          "example": "curl -H 'X-Api-Key: $NEWSAPI_KEY' 'https://newsapi.org/v2/everything?q=artificial+intelligence&sortBy=publishedAt&pageSize=10'"
+        },
+        {
+          "path": "/top-headlines/sources?language=en",
+          "method": "GET",
+          "desc": "List available news sources filterable by language and country",
+          "example": "curl -H 'X-Api-Key: $NEWSAPI_KEY' 'https://newsapi.org/v2/top-headlines/sources?language=en'"
+        }
+      ]
+    },
+    {
+      "name": "HackerNews Algolia API",
+      "base_url": "https://hn.algolia.com/api/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generous rate limits",
+      "key_env_var": null,
+      "docs_url": "https://hn.algolia.com/api",
+      "endpoints": [
+        {
+          "path": "/search?query={query}&tags=story",
+          "method": "GET",
+          "desc": "Full-text search across HN stories with relevance ranking",
+          "example": "curl 'https://hn.algolia.com/api/v1/search?query=claude+ai&tags=story'"
+        },
+        {
+          "path": "/search_by_date?tags=front_page",
+          "method": "GET",
+          "desc": "Get current front page stories sorted by date",
+          "example": "curl 'https://hn.algolia.com/api/v1/search_by_date?tags=front_page'"
+        },
+        {
+          "path": "/items/{item_id}",
+          "method": "GET",
+          "desc": "Get a specific story or comment by its HN ID",
+          "example": "curl 'https://hn.algolia.com/api/v1/items/39800000'"
+        }
+      ]
+    },
+    {
+      "name": "Reddit JSON API",
+      "base_url": "https://www.reddit.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, append .json to any Reddit URL. Rate limited to ~10 req/min",
+      "key_env_var": null,
+      "docs_url": "https://www.reddit.com/dev/api/",
+      "endpoints": [
+        {
+          "path": "/r/{subreddit}/hot.json?limit=25",
+          "method": "GET",
+          "desc": "Hot posts from a subreddit in JSON format",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/programming/hot.json?limit=10'"
+        },
+        {
+          "path": "/r/{subreddit}/search.json?q={query}&sort=relevance&t=week",
+          "method": "GET",
+          "desc": "Search within a subreddit by keyword",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/technology/search.json?q=ai&sort=top&t=week'"
+        },
+        {
+          "path": "/r/{subreddit}/top.json?t=day&limit=10",
+          "method": "GET",
+          "desc": "Top posts from a subreddit over a time period",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/MachineLearning/top.json?t=day&limit=10'"
+        }
+      ]
+    },
+    {
+      "name": "GNews",
+      "base_url": "https://gnews.io/api/v4",
+      "auth": "apiKey",
+      "auth_param": "apikey",
+      "auth_location": "query",
+      "free_tier": "100 requests/day, 10 articles per request",
+      "key_env_var": "GNEWS_API_KEY",
+      "docs_url": "https://gnews.io/docs/v4",
+      "endpoints": [
+        {
+          "path": "/top-headlines?category={category}&lang=en&apikey={key}",
+          "method": "GET",
+          "desc": "Top headlines by category and language",
+          "example": "curl 'https://gnews.io/api/v4/top-headlines?category=technology&lang=en&apikey=$GNEWS_API_KEY'"
+        },
+        {
+          "path": "/search?q={query}&lang=en&sortby=publishedAt&apikey={key}",
+          "method": "GET",
+          "desc": "Search news articles globally by keyword",
+          "example": "curl 'https://gnews.io/api/v4/search?q=startup+funding&lang=en&sortby=publishedAt&apikey=$GNEWS_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "TheNewsAPI",
+      "base_url": "https://api.thenewsapi.com/v1",
+      "auth": "apiKey",
+      "auth_param": "api_token",
+      "auth_location": "query",
+      "free_tier": "3 requests/day on free plan, 3 articles per response",
+      "key_env_var": "THE_NEWS_API_KEY",
+      "docs_url": "https://www.thenewsapi.com/documentation",
+      "endpoints": [
+        {
+          "path": "/news/top?api_token={key}&locale=us&limit=3",
+          "method": "GET",
+          "desc": "Top news stories by locale",
+          "example": "curl 'https://api.thenewsapi.com/v1/news/top?api_token=$THE_NEWS_API_KEY&locale=us&limit=3'"
+        },
+        {
+          "path": "/news/all?api_token={key}&search={query}&language=en",
+          "method": "GET",
+          "desc": "Search all indexed news articles by keyword",
+          "example": "curl 'https://api.thenewsapi.com/v1/news/all?api_token=$THE_NEWS_API_KEY&search=electric+vehicles&language=en'"
+        }
+      ]
+    },
+    {
+      "name": "Currents API",
+      "base_url": "https://api.currentsapi.services/v1",
+      "auth": "apiKey",
+      "auth_param": "apiKey",
+      "auth_location": "query",
+      "free_tier": "600 requests/day",
+      "key_env_var": "CURRENTS_API_KEY",
+      "docs_url": "https://currentsapi.services/en/docs/",
+      "endpoints": [
+        {
+          "path": "/latest-news?apiKey={key}&language=en",
+          "method": "GET",
+          "desc": "Latest news articles across all categories",
+          "example": "curl 'https://api.currentsapi.services/v1/latest-news?apiKey=$CURRENTS_API_KEY&language=en'"
+        },
+        {
+          "path": "/search?apiKey={key}&keywords={query}&language=en",
+          "method": "GET",
+          "desc": "Search news by keywords with language filter",
+          "example": "curl 'https://api.currentsapi.services/v1/search?apiKey=$CURRENTS_API_KEY&keywords=renewable+energy&language=en'"
+        },
+        {
+          "path": "/available/categories",
+          "method": "GET",
+          "desc": "List all available news categories",
+          "example": "curl 'https://api.currentsapi.services/v1/available/categories'"
+        }
+      ]
+    }
+  ]
+}

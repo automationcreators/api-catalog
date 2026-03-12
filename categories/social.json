@@ -1,0 +1,192 @@
+{
+  "category": "social",
+  "description": "Social platforms, forums, and developer communities with public read-only access",
+  "apis": [
+    {
+      "name": "Reddit JSON API",
+      "base_url": "https://www.reddit.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, append .json to any Reddit URL. ~10 requests/min, User-Agent required",
+      "key_env_var": null,
+      "docs_url": "https://www.reddit.com/dev/api/",
+      "endpoints": [
+        {
+          "path": "/r/{subreddit}/hot.json?limit=25",
+          "method": "GET",
+          "desc": "Hot posts from a subreddit",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/programming/hot.json?limit=10'"
+        },
+        {
+          "path": "/r/{subreddit}/top.json?t=week&limit=10",
+          "method": "GET",
+          "desc": "Top posts from a subreddit by time period (hour, day, week, month, year, all)",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/MachineLearning/top.json?t=week&limit=10'"
+        },
+        {
+          "path": "/r/{subreddit}/search.json?q={query}&sort=relevance&restrict_sr=1",
+          "method": "GET",
+          "desc": "Search posts within a specific subreddit",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/r/webdev/search.json?q=nextjs&sort=top&restrict_sr=1&t=month'"
+        },
+        {
+          "path": "/user/{username}/submitted.json?limit=10",
+          "method": "GET",
+          "desc": "A user's public submissions",
+          "example": "curl -H 'User-Agent: api-catalog/1.0' 'https://www.reddit.com/user/spez/submitted.json?limit=5'"
+        }
+      ]
+    },
+    {
+      "name": "HackerNews Firebase API",
+      "base_url": "https://hacker-news.firebaseio.com/v0",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, no documented rate limit (Firebase backed)",
+      "key_env_var": null,
+      "docs_url": "https://github.com/HackerNews/API",
+      "endpoints": [
+        {
+          "path": "/topstories.json",
+          "method": "GET",
+          "desc": "IDs of up to 500 current top stories",
+          "example": "curl 'https://hacker-news.firebaseio.com/v0/topstories.json'"
+        },
+        {
+          "path": "/item/{id}.json",
+          "method": "GET",
+          "desc": "Get a specific item (story, comment, job, poll) by ID",
+          "example": "curl 'https://hacker-news.firebaseio.com/v0/item/39800000.json'"
+        },
+        {
+          "path": "/newstories.json",
+          "method": "GET",
+          "desc": "IDs of up to 500 newest stories",
+          "example": "curl 'https://hacker-news.firebaseio.com/v0/newstories.json'"
+        },
+        {
+          "path": "/user/{username}.json",
+          "method": "GET",
+          "desc": "User profile with karma and submitted item IDs",
+          "example": "curl 'https://hacker-news.firebaseio.com/v0/user/pg.json'"
+        }
+      ]
+    },
+    {
+      "name": "Product Hunt API",
+      "base_url": "https://api.producthunt.com/v2/api/graphql",
+      "auth": "bearer",
+      "auth_param": "Authorization",
+      "auth_location": "header",
+      "free_tier": "Developer token available, rate limits apply per token",
+      "key_env_var": "PRODUCTHUNT_TOKEN",
+      "docs_url": "https://api.producthunt.com/v2/docs",
+      "endpoints": [
+        {
+          "path": "/",
+          "method": "POST",
+          "desc": "Get today's featured posts via GraphQL query",
+          "example": "curl -X POST 'https://api.producthunt.com/v2/api/graphql' -H 'Authorization: Bearer $PRODUCTHUNT_TOKEN' -H 'Content-Type: application/json' -d '{\"query\":\"{ posts(order: RANKING) { edges { node { name tagline url votesCount } } } }\"}'"
+        },
+        {
+          "path": "/",
+          "method": "POST",
+          "desc": "Search for products by topic",
+          "example": "curl -X POST 'https://api.producthunt.com/v2/api/graphql' -H 'Authorization: Bearer $PRODUCTHUNT_TOKEN' -H 'Content-Type: application/json' -d '{\"query\":\"{ posts(topic: \\\"artificial-intelligence\\\", first: 10) { edges { node { name tagline votesCount } } } }\"}'"
+        }
+      ]
+    },
+    {
+      "name": "DEV.to API",
+      "base_url": "https://dev.to/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for reading, 30 requests/30 seconds for unauthenticated",
+      "key_env_var": null,
+      "docs_url": "https://developers.forem.com/api/v1",
+      "endpoints": [
+        {
+          "path": "/articles?per_page=10&top=7",
+          "method": "GET",
+          "desc": "Top articles from the past N days",
+          "example": "curl 'https://dev.to/api/articles?per_page=10&top=7'"
+        },
+        {
+          "path": "/articles?tag={tag}&per_page=10",
+          "method": "GET",
+          "desc": "Articles filtered by tag",
+          "example": "curl 'https://dev.to/api/articles?tag=python&per_page=10'"
+        },
+        {
+          "path": "/articles/{id}",
+          "method": "GET",
+          "desc": "Full article with body HTML by article ID",
+          "example": "curl 'https://dev.to/api/articles/1234567'"
+        }
+      ]
+    },
+    {
+      "name": "Mastodon API",
+      "base_url": "https://mastodon.social/api/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public endpoints, 300 requests/5 minutes",
+      "key_env_var": null,
+      "docs_url": "https://docs.joinmastodon.org/client/intro/",
+      "endpoints": [
+        {
+          "path": "/timelines/public?limit=20",
+          "method": "GET",
+          "desc": "Public federated timeline of recent toots",
+          "example": "curl 'https://mastodon.social/api/v1/timelines/public?limit=20'"
+        },
+        {
+          "path": "/timelines/tag/{hashtag}?limit=20",
+          "method": "GET",
+          "desc": "Public posts with a specific hashtag",
+          "example": "curl 'https://mastodon.social/api/v1/timelines/tag/programming?limit=20'"
+        },
+        {
+          "path": "/trends/statuses?limit=10",
+          "method": "GET",
+          "desc": "Currently trending posts on the instance",
+          "example": "curl 'https://mastodon.social/api/v1/trends/statuses?limit=10'"
+        }
+      ]
+    },
+    {
+      "name": "Lemmy API",
+      "base_url": "https://lemmy.ml/api/v3",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required for public read endpoints",
+      "key_env_var": null,
+      "docs_url": "https://join-lemmy.org/docs/contributors/04-api.html",
+      "endpoints": [
+        {
+          "path": "/post/list?sort=Hot&limit=20",
+          "method": "GET",
+          "desc": "List hot posts across all communities",
+          "example": "curl 'https://lemmy.ml/api/v3/post/list?sort=Hot&limit=10'"
+        },
+        {
+          "path": "/community/list?sort=TopAll&limit=20",
+          "method": "GET",
+          "desc": "List communities sorted by subscribers or activity",
+          "example": "curl 'https://lemmy.ml/api/v3/community/list?sort=TopAll&limit=20'"
+        },
+        {
+          "path": "/search?q={query}&type_=Posts&sort=TopAll&limit=10",
+          "method": "GET",
+          "desc": "Search posts, comments, communities, or users",
+          "example": "curl 'https://lemmy.ml/api/v3/search?q=rust+programming&type_=Posts&sort=TopAll&limit=10'"
+        }
+      ]
+    }
+  ]
+}

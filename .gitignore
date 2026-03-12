@@ -1,0 +1,38 @@
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+secrets.*
+**/secrets/**
+credentials.json
+credentials.*.json
+
+# API keys - never commit these
+**/api-keys*
+**/tokens*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (if we add scripts later)
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+*.log
