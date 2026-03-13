@@ -1,0 +1,357 @@
+{
+  "category": "food-drink",
+  "description": "Recipes, restaurants, nutrition, and beverage APIs",
+  "apis": [
+    {
+      "name": "BaconMockup",
+      "description": "Resizable bacon placeholder images",
+      "base_url": "https://baconmockup.com/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://baconmockup.com/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Chomp",
+      "description": "Data about various grocery products and foods",
+      "base_url": "https://chompthis.com/api/",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "CHOMP_API_KEY",
+      "docs_url": "https://chompthis.com/api/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Coffee",
+      "description": "Random pictures of coffee",
+      "base_url": "https://coffee.alexflipnote.dev/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://coffee.alexflipnote.dev/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Edamam nutrition",
+      "description": "Nutrition Analysis",
+      "base_url": "https://developer.edamam.com/edamam-docs-nutrition-api",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "EDAMAM_NUTRITION_API_KEY",
+      "docs_url": "https://developer.edamam.com/edamam-docs-nutrition-api",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Edamam recipes",
+      "description": "Recipe Search",
+      "base_url": "https://developer.edamam.com/edamam-docs-recipe-api",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "EDAMAM_RECIPES_API_KEY",
+      "docs_url": "https://developer.edamam.com/edamam-docs-recipe-api",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Foodish",
+      "description": "Random pictures of food dishes",
+      "base_url": "https://github.com/surhud004/Foodish#readme",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://github.com/surhud004/Foodish#readme",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Fruityvice",
+      "description": "Data about all kinds of fruit",
+      "base_url": "https://www.fruityvice.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://www.fruityvice.com",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Kroger",
+      "description": "Supermarket Data",
+      "base_url": "https://developer.kroger.com/reference",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "KROGER_API_KEY",
+      "docs_url": "https://developer.kroger.com/reference",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "LCBO",
+      "description": "Alcohol",
+      "base_url": "https://lcboapi.com/",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "LCBO_API_KEY",
+      "docs_url": "https://lcboapi.com/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Open Brewery DB",
+      "description": "Breweries, Cideries and Craft Beer Bottle Shops",
+      "base_url": "https://www.openbrewerydb.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://www.openbrewerydb.org",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Open Food Facts",
+      "description": "Food Products Database",
+      "base_url": "https://world.openfoodfacts.org/api/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://wiki.openfoodfacts.org/API",
+      "tier": 1,
+      "endpoints": [
+        {
+          "path": "/product/{barcode}.json",
+          "method": "GET",
+          "desc": "Get product nutrition by barcode",
+          "example": "curl 'https://world.openfoodfacts.org/api/v2/product/3017620422003.json'"
+        },
+        {
+          "path": "/search?categories_tags=pizza&page_size=5",
+          "method": "GET",
+          "desc": "Search products by category",
+          "example": "curl 'https://world.openfoodfacts.org/api/v2/search?categories_tags=pizza&page_size=5'"
+        }
+      ]
+    },
+    {
+      "name": "PunkAPI",
+      "description": "Brewdog Beer Recipes",
+      "base_url": "https://punkapi.com/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://punkapi.com/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Rustybeer",
+      "description": "Beer brewing tools",
+      "base_url": "https://rustybeer.herokuapp.com/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://rustybeer.herokuapp.com/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Spoonacular",
+      "description": "Recipes, Food Products, and Meal Planning",
+      "base_url": "https://spoonacular.com/food-api",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "SPOONACULAR_API_KEY",
+      "docs_url": "https://spoonacular.com/food-api",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Systembolaget",
+      "description": "Govornment owned liqour store in Sweden",
+      "base_url": "https://api-portal.systembolaget.se",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "SYSTEMBOLAGET_API_KEY",
+      "docs_url": "https://api-portal.systembolaget.se",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "TacoFancy",
+      "description": "Community-driven taco database",
+      "base_url": "https://github.com/evz/tacofancy-api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://github.com/evz/tacofancy-api",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Tasty",
+      "description": "API to query data about recipe, plan, ingredients",
+      "base_url": "https://rapidapi.com/apidojo/api/tasty/",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "TASTY_API_KEY",
+      "docs_url": "https://rapidapi.com/apidojo/api/tasty/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "The Report of the Week",
+      "description": "Food & Drink Reviews",
+      "base_url": "https://github.com/andyklimczak/TheReportOfTheWeek-API",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://github.com/andyklimczak/TheReportOfTheWeek-API",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "TheCocktailDB",
+      "description": "Cocktail Recipes",
+      "base_url": "https://www.thecocktaildb.com/api/json/v1/1",
+      "auth": "none",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "THECOCKTAILDB_API_KEY",
+      "docs_url": "https://www.thecocktaildb.com/api.php",
+      "tier": 1,
+      "endpoints": [
+        {
+          "path": "/search.php?s={cocktail}",
+          "method": "GET",
+          "desc": "Search cocktails by name",
+          "example": "curl 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita'"
+        },
+        {
+          "path": "/random.php",
+          "method": "GET",
+          "desc": "Get a random cocktail recipe",
+          "example": "curl 'https://www.thecocktaildb.com/api/json/v1/1/random.php'"
+        }
+      ]
+    },
+    {
+      "name": "TheMealDB",
+      "description": "Meal Recipes",
+      "base_url": "https://www.themealdb.com/api/json/v1/1",
+      "auth": "none",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "THEMEALDB_API_KEY",
+      "docs_url": "https://www.themealdb.com/api.php",
+      "tier": 1,
+      "endpoints": [
+        {
+          "path": "/search.php?s={meal}",
+          "method": "GET",
+          "desc": "Search meals by name",
+          "example": "curl 'https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata'"
+        },
+        {
+          "path": "/random.php",
+          "method": "GET",
+          "desc": "Get a random meal recipe",
+          "example": "curl 'https://www.themealdb.com/api/json/v1/1/random.php'"
+        }
+      ]
+    },
+    {
+      "name": "Untappd",
+      "description": "Social beer sharing",
+      "base_url": "https://untappd.com/api/docs",
+      "auth": "OAuth",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://untappd.com/api/docs",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "What's on the menu?",
+      "description": "NYPL human-transcribed historical menu collection",
+      "base_url": "http://nypl.github.io/menus-api/",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "WHAT_S_ON_THE_MENU_API_KEY",
+      "docs_url": "http://nypl.github.io/menus-api/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "WhiskyHunter",
+      "description": "Past online whisky auctions statistical data",
+      "base_url": "https://whiskyhunter.net/api/",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "See docs",
+      "key_env_var": null,
+      "docs_url": "https://whiskyhunter.net/api/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Zestful",
+      "description": "Parse recipe ingredients",
+      "base_url": "https://zestfuldata.com/",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "See docs",
+      "key_env_var": "ZESTFUL_API_KEY",
+      "docs_url": "https://zestfuldata.com/",
+      "tier": 3,
+      "endpoints": []
+    }
+  ]
+}

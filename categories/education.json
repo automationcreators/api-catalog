@@ -1,0 +1,238 @@
+{
+  "category": "education",
+  "description": "Quiz, trivia, learning resources, and educational APIs",
+  "apis": [
+    {
+      "name": "Open Trivia DB",
+      "description": "Free trivia questions database with multiple categories and difficulty levels",
+      "base_url": "https://opentdb.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 1 request per 5 seconds",
+      "key_env_var": null,
+      "docs_url": "https://opentdb.com/api_config.php",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/api.php?amount=10&category=18&type=multiple",
+          "method": "GET",
+          "desc": "Get trivia questions (category 18 = computers)",
+          "example": "curl 'https://opentdb.com/api.php?amount=5&category=18&type=multiple'"
+        }
+      ]
+    },
+    {
+      "name": "Numbers API",
+      "description": "Interesting facts about numbers, dates, years, and math",
+      "base_url": "http://numbersapi.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, unlimited",
+      "key_env_var": null,
+      "docs_url": "http://numbersapi.com",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/{number}/trivia?json",
+          "method": "GET",
+          "desc": "Get a trivia fact about a number",
+          "example": "curl 'http://numbersapi.com/42/trivia?json'"
+        }
+      ]
+    },
+    {
+      "name": "Free Dictionary API",
+      "description": "Word definitions, phonetics, and examples",
+      "base_url": "https://api.dictionaryapi.dev/api/v2",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, generous limits",
+      "key_env_var": null,
+      "docs_url": "https://dictionaryapi.dev/",
+      "tier": 1,
+      "endpoints": [
+        {
+          "path": "/entries/en/{word}",
+          "method": "GET",
+          "desc": "Look up a word definition with phonetics and examples",
+          "example": "curl 'https://api.dictionaryapi.dev/api/v2/entries/en/serendipity'"
+        }
+      ]
+    },
+    {
+      "name": "Wikipedia REST API",
+      "description": "Search and retrieve Wikipedia articles and summaries",
+      "base_url": "https://en.wikipedia.org/api/rest_v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required",
+      "key_env_var": null,
+      "docs_url": "https://en.wikipedia.org/api/rest_v1/",
+      "tier": 1,
+      "endpoints": [
+        {
+          "path": "/page/summary/{title}",
+          "method": "GET",
+          "desc": "Get a summary of a Wikipedia article",
+          "example": "curl 'https://en.wikipedia.org/api/rest_v1/page/summary/Machine_learning'"
+        }
+      ]
+    },
+    {
+      "name": "Quotable",
+      "description": "Random quotes from famous people",
+      "base_url": "https://api.quotable.io",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required",
+      "key_env_var": null,
+      "docs_url": "https://github.com/lukePeavey/quotable",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/random",
+          "method": "GET",
+          "desc": "Get a random quote",
+          "example": "curl 'https://api.quotable.io/random'"
+        }
+      ]
+    },
+    {
+      "name": "arXiv API",
+      "description": "Search and access preprint research papers",
+      "base_url": "http://export.arxiv.org/api",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 3 second wait between requests",
+      "key_env_var": null,
+      "docs_url": "https://info.arxiv.org/help/api/index.html",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/query?search_query=all:{query}&start=0&max_results=5",
+          "method": "GET",
+          "desc": "Search for papers by keyword",
+          "example": "curl 'http://export.arxiv.org/api/query?search_query=all:transformer+attention&max_results=5'"
+        }
+      ]
+    },
+    {
+      "name": "Merriam-Webster",
+      "description": "Dictionary and thesaurus with audio pronunciation",
+      "base_url": "https://dictionaryapi.com/api/v3/references",
+      "auth": "apiKey",
+      "auth_param": "key",
+      "auth_location": "query",
+      "free_tier": "1000 queries/day with free developer key",
+      "key_env_var": "MERRIAM_WEBSTER_API_KEY",
+      "docs_url": "https://dictionaryapi.com/products/index",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/collegiate/json/{word}?key={key}",
+          "method": "GET",
+          "desc": "Look up word definition from collegiate dictionary",
+          "example": "curl 'https://dictionaryapi.com/api/v3/references/collegiate/json/algorithm?key=$MERRIAM_WEBSTER_API_KEY'"
+        }
+      ]
+    },
+    {
+      "name": "Semantic Scholar",
+      "description": "Academic paper search with citation graphs and author info",
+      "base_url": "https://api.semanticscholar.org/graph/v1",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, 100 requests/5 min",
+      "key_env_var": null,
+      "docs_url": "https://api.semanticscholar.org/api-docs/",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/paper/search?query={query}&limit=5",
+          "method": "GET",
+          "desc": "Search for academic papers by keyword",
+          "example": "curl 'https://api.semanticscholar.org/graph/v1/paper/search?query=large+language+models&limit=5'"
+        }
+      ]
+    },
+    {
+      "name": "CrossRef",
+      "description": "DOI and scholarly metadata lookup for academic citations",
+      "base_url": "https://api.crossref.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required, polite pool with email",
+      "key_env_var": null,
+      "docs_url": "https://api.crossref.org/swagger-ui/index.html",
+      "tier": 2,
+      "endpoints": [
+        {
+          "path": "/works?query={query}&rows=5",
+          "method": "GET",
+          "desc": "Search for scholarly works by keyword",
+          "example": "curl 'https://api.crossref.org/works?query=deep+learning&rows=5'"
+        }
+      ]
+    },
+    {
+      "name": "PoetryDB",
+      "description": "Free poetry database API with search by author, title, and lines",
+      "base_url": "https://poetrydb.org",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required",
+      "key_env_var": null,
+      "docs_url": "https://github.com/thundercomb/poetrydb",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Gutendex",
+      "description": "Project Gutenberg public domain books API",
+      "base_url": "https://gutendex.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required",
+      "key_env_var": null,
+      "docs_url": "https://gutendex.com/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "Fun Translations",
+      "description": "Translate text into fun languages like Yoda, Pirate, Shakespeare",
+      "base_url": "https://api.funtranslations.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "5 calls/hour free",
+      "key_env_var": null,
+      "docs_url": "https://funtranslations.com/api/",
+      "tier": 3,
+      "endpoints": []
+    },
+    {
+      "name": "PurgoMalum",
+      "description": "Profanity filter for text content",
+      "base_url": "https://www.purgomalum.com",
+      "auth": "none",
+      "auth_param": null,
+      "auth_location": null,
+      "free_tier": "No key required",
+      "key_env_var": null,
+      "docs_url": "https://www.purgomalum.com/",
+      "tier": 3,
+      "endpoints": []
+    }
+  ]
+}
